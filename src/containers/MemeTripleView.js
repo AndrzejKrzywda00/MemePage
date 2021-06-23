@@ -1,9 +1,9 @@
 import React from 'react';
 import Thumbnail from '../img/meme_thumbnail.png';
-import {Card, CardGroup} from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.css";
+import {Button, Card, CardGroup} from "react-bootstrap";
+import "../styles/memeTripleView.css";
 
-const Meme =()=> {
+const MemeTripleView =()=> {
 
     const Title = "Tytuł pierwszego mema";
     const Description = "Dłuższy opis pierwszego obrazka, który dokładnie analizuje jego pochodzenie i różne aspekty związane z jego powstaniem,a potem w jakim kontekście jest używany.";
@@ -20,6 +20,7 @@ const Meme =()=> {
                         {Description}
                     </Card.Text>
                 </Card.Body>
+                <Button variant={"btn-primary"}>Zobacz</Button>
             </Card>
             <Card>
                 <Card.Img variant={"top"} src={Thumbnail}/>
@@ -31,6 +32,7 @@ const Meme =()=> {
                         {Description}
                     </Card.Text>
                 </Card.Body>
+                <Button variant={"btn-primary"}>Zobacz</Button>
             </Card>
             <Card>
                 <Card.Img variant={"top"} src={Thumbnail}/>
@@ -42,9 +44,10 @@ const Meme =()=> {
                         {Description}
                     </Card.Text>
                 </Card.Body>
+                <Button variant={"btn-primary"}>Zobacz</Button>
             </Card>
         </CardGroup>
     );
 }
 
-export default Meme;
+export default MemeTripleView;

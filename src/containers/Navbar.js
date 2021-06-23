@@ -1,7 +1,10 @@
+import Logo from '../img/meme_page_logo.png';
+
 const Navbar =()=> {
     return (
         <nav className="navbar">
-            <h1>Strona z memami</h1>
+            <img src={Logo} id="logo"/>
+            <h1>Galeria memów</h1>
             <div className="links">
                 <a href="/">Home</a>
                 <a href="/memes/random">Losowy mem</a>

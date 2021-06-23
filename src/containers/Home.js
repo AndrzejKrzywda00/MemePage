@@ -1,14 +1,15 @@
-const Home =()=> {
+import {useState} from 'react';
+import MyComponent from '../components/MyComponent';
+import Layout from "../meta/Layout";
 
-    const handleClick =()=> {
-        console.log('hello this worked');
-    }
+const Home =({location})=> {
 
     return(
-        <div className="home">
-            <h2>Strona startowa(domowa)</h2>
-            <button onClick={handleClick}>Click me!!!</button>
-        </div>
+        <Layout>
+            <h1>Home Page <span>{location.pathname}</span></h1>
+            <h2>Strona startowa (domowa)</h2>
+            <MyComponent/>
+        </Layout>
     );
 }
 

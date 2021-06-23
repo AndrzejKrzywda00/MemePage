@@ -11,7 +11,7 @@ function App() {
     return (
     <Layout>
         <h1>Witaj na stronie o memach!</h1>
-        <MyComponent/>
+        <Register/>
     </Layout>
   );
 }

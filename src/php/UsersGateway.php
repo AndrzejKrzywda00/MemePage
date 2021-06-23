@@ -1,14 +1,25 @@
 <?php
 
-
-class UserGateway
+class UsersGateway
 {
     // TODO -- remove exit() in exception and make appropriate HTTP responses
-    private $db = null;
+    private $db;
 
     public function __construct($db)
     {
         $this->db = $db;
+    }
+
+    public function find($id)
+    {
+        $stmt = "SELECT * FROM users WHERE id = :id";
+        try {
+            $stmt = $this->db->prepare($stmt);
+            $stmt->execute(array('id' => $id));
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            exit($e->getMessage());
+        }
     }
 
     public function findAll()
@@ -24,17 +35,14 @@ class UserGateway
 
     public function insert(Array $input)
     {
-        $stmt = "INSERT INTO users (id, nick, email, password, created, edits) VALUES (:id, :nick, :email, :password, :created, :edits);";
+        $stmt = "INSERT INTO users (nick, email, password, created, edits) VALUES (:nick, :email, :password, NOW(), 0);";
 
         try {
             $stmt = $this->db->prepare($stmt);
-            $stmt->excute(array(
-                'id' => $input['id'],
+            $stmt->execute(array(
                 'nick' => $input['nick'],
                 'email' => $input['email'],
-                'password' => $input['password'],
-                'created' => $input['created'],
-                'edits' => 0
+                'password' => $input['password']
             ));
             return $stmt->rowCount();
         } catch(PDOException $e) {
@@ -42,7 +50,44 @@ class UserGateway
         }
     }
 
-    
+    public function update($id, Array $input)
+    {
+        $stmt = "UPDATE users SET edits = :edits WHERE id = :id";
+        try {
+            $stmt = $this->db->prepare($stmt);
+            $stmt->execute(array(
+                'id' => $input['id'],
+                'edits' => $input['edits']
+            ));
+        } catch (PDOException $e) {
+            exit($e->getMessage());
+        }
+    }
 
+    public function updateEdits($id)
+    {
+        $stmt = "UPDATE users SET edits = edits+1 WHERE id = :id";
+        try {
+            $stmt = $this->db->prepare($stmt);
+            $stmt->execute(array(
+                'id' => $id
+            ));
+            return $stmt->rowCount();
+        } catch (PDOException $e) {
+            exit($e->getMessage());
+        }
+    }
+
+    public function delete($id)
+    {
+        $stmt = "DELETE FROM users WHERE id = :id;";
+        try {
+            $stmt = $this->db->prepare($stmt);
+            $stmt->execute(array('id' => $id));
+            return $stmt->rowCount();
+        } catch (PDOException $e) {
+            exit($e->getMessage());
+        }
+    }
 
 }

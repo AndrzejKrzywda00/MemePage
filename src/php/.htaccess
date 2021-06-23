@@ -1,0 +1,2 @@
+RewriteEngine On
+RewriteRule [\s\S]* index.php [NC,L,QSA]

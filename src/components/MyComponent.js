@@ -1,12 +1,18 @@
 import {useEffect, useState} from 'react';
 
-const MyComponent =()=> {
+function MyComponent() {
     const [error, setError] = useState(0);
     const [isLoaded, setIsLoaded] = useState(false);
     const [items, setItems] = useState([]);
 
     useEffect(()=> {
-        fetch("https://labagh.pl/memes/1")
+        fetch("https://s108.labagh.pl/memes",
+            {
+                method: "GET",
+                headers: new Headers({
+                    Accept: "*/*"
+                })
+            })
             .then(res => res.json())
             .then(
                 (result) => {
@@ -18,7 +24,7 @@ const MyComponent =()=> {
                     setError(error);
                 }
             )
-    }, [])
+    }, []);
 
     if(error) {
         return <div>Error: {error.message}</div>;
@@ -27,12 +33,15 @@ const MyComponent =()=> {
     } else {
         return (
             <ul>
+                <h3>Udaje się pobrać dane !!! </h3>
                 {items.map(item => (
                     <li key={item.id}>
-                        {item.title} {item.description}
+                        {item.title} {item.description} {item.year}
                     </li>
                 ))}
             </ul>
         )
     }
 }
+
+export default MyComponent;
