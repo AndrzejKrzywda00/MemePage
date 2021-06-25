@@ -1,3 +1,16 @@
-.btn-primary {
-    alignment: right;
+#register {
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-width: 1px;
+    border-radius: 8px;
+    border-style: dotted;
+}
+
+.btn-success {
+    margin-top: 10px;
+}
+
+#nick-input {
+    font-weight: bold;
 }

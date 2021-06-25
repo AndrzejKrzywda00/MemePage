@@ -5,7 +5,7 @@ import "../form.css";
 
 const Login =()=> {
     return (
-        <Form>
+        <Form id={"login"}>
             <h3>Zaloguj się</h3>
             <Form.Group controlId="formBasicEmail">
                 <Form.Label>Adres email</Form.Label>

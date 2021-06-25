@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 
 function MyComponent() {
+
     const [error, setError] = useState(0);
     const [isLoaded, setIsLoaded] = useState(false);
     const [items, setItems] = useState([]);

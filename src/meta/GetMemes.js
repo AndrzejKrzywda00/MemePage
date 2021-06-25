@@ -6,13 +6,14 @@ import {useEffect, useState} from 'react';
  * @param props - an obj defying what data to take
  * @returns {JSX.Element|*} - parsed json to retrieve fields
  */
-function getMemes(props) {
+function GetMemes(props) {
 
     const [error, setError] = useState(0);
     const [isLoaded, setIsLoaded] = useState(false);
-    const [items, setItems] = useState([]);
+    const [items, setItems] = useState({});
 
     useEffect(()=> {
+
         fetch("https://s108.labagh.pl/memes/" + props.id,
             {
                 method: "GET",
@@ -42,4 +43,4 @@ function getMemes(props) {
     }
 }
 
-export default getMemes;
+export default GetMemes;

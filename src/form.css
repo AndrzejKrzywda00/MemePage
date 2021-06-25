@@ -1,6 +1,11 @@
-Form {
+#login{
     margin-top: 20px;
     margin-bottom: 20px;
+    padding: 20px;
+    border-style: dotted;
+    border-width: 1px;
+    border-color: black;
+    border-radius: 8px;
 }
 
 .form-group {

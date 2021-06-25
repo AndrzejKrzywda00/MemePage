@@ -4,12 +4,12 @@ import {Button, Form, FormControl, FormLabel} from "react-bootstrap";
 
 const Register = () => {
     return (
-        <div>
+        <div id={"register"}>
             <h3>Zarejestruj się</h3>
             <Form>
                 <Form.Group controlId={"formGroupNick"}>
                     <FormLabel>Twój nick</FormLabel>
-                    <FormControl type={"nick"} placeholder={"np. kwiatuszek123"}/>
+                    <FormControl type={"nick"} placeholder={"np. kwiatuszek123"} id={"nick-input"}/>
                 </Form.Group>
                 <Form.Group controlId="formGroupEmail">
                     <Form.Label>Adres email</Form.Label>
@@ -19,7 +19,7 @@ const Register = () => {
                     <Form.Label>Hasło</Form.Label>
                     <Form.Control type="password" placeholder="" />
                 </Form.Group>
-                <Button variant={"primary"}>Dodaj użytkownika</Button>
+                <Button variant={"success"}>Zarejestruj się</Button>
             </Form>
         </div>
     );

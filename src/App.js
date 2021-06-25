@@ -5,8 +5,16 @@ import Home from "./containers/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import MyComponent from "./components/MyComponent";
+import Meme from "./components/Meme";
+import GetMemes from "./meta/GetMemes";
+import SmallMeme from "./components/SmallMeme";
+import {Pagination} from "react-bootstrap";
 
 function App() {
+
+    const props = {"id": 1};
+    const meme = GetMemes(props);
+
     return (
     <Layout>
         <h1>Witaj na stronie o memach!</h1>
