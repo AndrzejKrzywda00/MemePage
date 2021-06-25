@@ -3,7 +3,6 @@ import Layout from "./meta/Layout";
 import MemeTripleView from "./containers/MemeTripleView"
 import Home from "./containers/Home";
 import Login from "./pages/Login";
-import SingleMeme from "./containers/SingleMeme";
 import Register from "./pages/Register";
 import MyComponent from "./components/MyComponent";
 

@@ -1,19 +1,23 @@
-import React, {useEffect, useState} from 'react';
-import Image from '../img/meme_thumbnail.png';
+import React from 'react';
+import {useEffect, useState} from 'react';
 
-function SingleMeme (props) {
+/***
+ * This function gets meme ad id or all memes if id not specified
+ * @param props - an obj defying what data to take
+ * @returns {JSX.Element|*} - parsed json to retrieve fields
+ */
+function getMemes(props) {
 
     const [error, setError] = useState(0);
     const [isLoaded, setIsLoaded] = useState(false);
     const [items, setItems] = useState([]);
-    const [images, setImages] = useState([]);
 
     useEffect(()=> {
-        fetch("https://s108.labagh.pl/memes" + props.id,
+        fetch("https://s108.labagh.pl/memes/" + props.id,
             {
                 method: "GET",
                 headers: new Headers({
-                        Accept: "*/*"
+                    Accept: "*/*"
                 })
             })
             .then(res => res.json())
@@ -29,8 +33,13 @@ function SingleMeme (props) {
             )
     }, []);
 
-    return(<h1>Proste zdanie</h1>)
-
+    if(error) {
+        return <div>Error : {error.message}</div>
+    } else if(!isLoaded) {
+        return <div>Loading ...</div>
+    } else {
+        return items;
+    }
 }
 
-export default SingleMeme;
+export default getMemes;
