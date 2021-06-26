@@ -1,13 +1,18 @@
 import React from "react";
+import {Card} from "react-bootstrap";
 
-const Comments =()=> {
-    return (
-        <div>
-            <p>This should be field for displaying comments in following manner:</p>
-            <p>User1 comment</p>
-            <p>User2 comment</p>
-            <p>Logged user comment (on the right side)</p>
-        </div>
+const Comments =({comment})=> {
+    return (<Card>
+            <Card.Title>
+                {comment.author_id}
+            </Card.Title>
+            <Card.Body>
+                {comment.added_at}
+                {comment.likes}
+                {comment.content}
+                {comment.meme_id}
+            </Card.Body>
+        </Card>
     );
 }
 

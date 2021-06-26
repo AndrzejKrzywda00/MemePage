@@ -9,6 +9,7 @@ import Meme from "./components/Meme";
 import GetMemes from "./meta/GetMemes";
 import SmallMeme from "./components/SmallMeme";
 import {Pagination} from "react-bootstrap";
+import Comments from "./components/Comments";
 
 function App() {
 
