@@ -1,11 +1,11 @@
 import React from "react";
-import Layout from "../meta/Layout";
+import "../styles/Main.css"
 
 const Main =({location})=> {
     return (
-        <Layout>
-            <h1>Witaj na stronie o memach. Tutaj znajdziesz wyjaśnienia niemal każdego mema.<span>{location.pathname}</span></h1>
-        </Layout>
+        <div id={"main-content"}>
+            <h1>Witaj na stronie o memach! Tutaj znajdziesz wyjaśnienia niemal każdego wątku z kultury internetowej.😀</h1>
+        </div>
     );
 }
 

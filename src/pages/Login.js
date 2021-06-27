@@ -6,8 +6,6 @@ import Layout from "../meta/Layout";
 
 const Login =({location})=> {
     return (
-        <Layout>
-            <h1>Strona logowania : <span>{location.pathname}</span></h1>
             <Form id={"login"}>
                 <h3>Zaloguj się</h3>
                 <Form.Group controlId="formBasicEmail">
@@ -27,7 +25,6 @@ const Login =({location})=> {
                 </Form.Group>
                 <Button variant={"primary"}>Zaloguj się</Button>
             </Form>
-        </Layout>
     );
 }
 
