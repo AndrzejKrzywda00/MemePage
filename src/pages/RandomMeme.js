@@ -1,6 +1,5 @@
 import React from "react";
-import Layout from "../meta/Layout";
-
+import '../styles/RandomMeme.css';
 /***
  *
  * @param location is a path provided by router
@@ -8,10 +7,10 @@ import Layout from "../meta/Layout";
  */
 const RandomMeme = ({location}) => {
     return (
-        <Layout>
-            <h1>To jest strona dla pojedynczego mema. <span>{location.pathname}</span></h1>
+        <div id={"random-meme"}>
+            <h1>To jest strona dla losowego mema.</h1>
             <p>Poniżej musi znajdować się komponent dyskusji (listy komentarzy)</p>
-        </Layout>
+        </div>
     );
 }
 

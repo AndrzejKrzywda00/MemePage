@@ -7,7 +7,7 @@ import Layout from "../meta/Layout";
 const Login =({location})=> {
     return (
             <Form id={"login"}>
-                <h3>Zaloguj się</h3>
+                <h3>Logowanie</h3>
                 <Form.Group controlId="formBasicEmail">
                     <Form.Label>Adres email</Form.Label>
                     <Form.Control type="email" placeholder="np. jan.kowalski@gmail.com" />
