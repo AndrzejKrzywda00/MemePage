@@ -8,3 +8,25 @@
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+#item:hover {
+    background-color: #e3e1e1;
+}
+
+#content {
+    text-align: left;
+    margin-bottom: 0;
+}
+
+#title {
+    font-weight: bold;
+}
+
+#see-meme {
+    background-color: black;
+    border-color: black;
+}
+
+h2 {
+    text-align: center;
+}

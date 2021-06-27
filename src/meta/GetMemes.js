@@ -3,10 +3,9 @@ import {useEffect, useState} from 'react';
 
 /***
  * This function gets meme ad id or all memes if id not specified
- * @param props - an obj defying what data to take
  * @returns {JSX.Element|*} - parsed json to retrieve fields
  */
-function GetMemes(props) {
+function GetMemes() {
 
     const [error, setError] = useState(0);
     const [isLoaded, setIsLoaded] = useState(false);
@@ -14,7 +13,7 @@ function GetMemes(props) {
 
     useEffect(()=> {
 
-        fetch("https://s108.labagh.pl/memes/" + props.id,
+        fetch("https://s108.labagh.pl/memes/",
             {
                 method: "GET",
                 headers: new Headers({
