@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 
-function postRegister({user}) {
+function PostRegister({user}) {
 
     const [error, setError] = useState(0);
 
@@ -33,4 +33,4 @@ function postRegister({user}) {
     }
 }
 
-export default postRegister;
+export default PostRegister;

@@ -6,7 +6,7 @@ const Footer =()=> {
     let secs = date.getSeconds();
 
     let period = "AM";
-    if(hrs == 0) {
+    if(hrs === 0) {
         hrs = 12;
     }
 
