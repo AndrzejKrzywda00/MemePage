@@ -1,18 +1,26 @@
 import Logo from '../img/meme_page_logo.png';
+import {Link, Router} from '@reach/router';
+import Register from "../pages/Register";
 
 const Navbar =()=> {
     return (
-        <nav className="navbar">
-            <img src={Logo} id="logo"/>
-            <h1>Galeria memów</h1>
-            <div className="links">
-                <a href="/">Home</a>
-                <a href="/memes/random">Losowy mem</a>
-                <a href="/memes" id="meme_gallery_link">Wszystkie memy</a>
-                <a href="/user">Rejestracja</a>
-                <a href="/user">Logowanie</a>
-            </div>
-        </nav>
+        <div>
+            <nav className="navbar">
+                <img src={Logo} id="logo"/>
+                <h1>Galeria memów</h1>
+                <div className="links">
+                    <Link to={"/"}>Strona domowa</Link>
+                    <Link to={"/memes/random"}>Losowy mem</Link>
+                    <Link to={"/memes"} id="meme_gallery_link">Wszystkie memy</Link>
+                    <Link to={"/users"}>Rejestracja</Link>
+                    <Link to={"/users"}>Logowanie</Link>
+                </div>
+            </nav>
+            <Router basepath={""}>
+                <Login path={"/users/login"}/>
+                <Register path={"/users/register"}/>
+            </Router>
+        </div>
     );
 }
 

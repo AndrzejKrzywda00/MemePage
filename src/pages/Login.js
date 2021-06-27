@@ -2,6 +2,7 @@ import React from 'react';
 import {Button, Form} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import "../form.css";
+import Layout from "../meta/Layout";
 
 const Login =({location})=> {
     return (
