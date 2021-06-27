@@ -68,7 +68,11 @@ class ImageProcessor
             }
         }
 
-        if($this->requestMethod != 'POST' && $this->requestMethod != 'DELETE') {
+        if($this->requestMethod == 'GET') {
+            // TODO -- handle giving the image data
+        }
+
+        if($this->requestMethod != 'POST' && $this->requestMethod != 'DELETE' && $this->requestMethod != 'GET') {
             $response = $this->methodNotAllowed();
         }
 

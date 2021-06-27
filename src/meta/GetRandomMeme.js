@@ -5,15 +5,15 @@ import {useEffect, useState} from 'react';
  * This function gets meme ad id or all memes if id not specified
  * @returns {JSX.Element|*} - parsed json to retrieve fields
  */
-function GetMemes() {
+function GetRandomMeme() {
 
     const [error, setError] = useState(0);
     const [isLoaded, setIsLoaded] = useState(false);
-    const [items, setItems] = useState([]);
+    const [items, setItems] = useState({});
 
     useEffect(()=> {
-            // TODO -- fix the problem with synchronization
-        fetch("https://s108.labagh.pl/memes",
+
+        fetch("https://s108.labagh.pl/memes/random",
             {
                 method: "GET",
                 headers: new Headers({
@@ -42,4 +42,4 @@ function GetMemes() {
     }
 }
 
-export default GetMemes;
+export default GetRandomMeme;

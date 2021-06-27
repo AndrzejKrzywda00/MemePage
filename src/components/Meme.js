@@ -1,18 +1,19 @@
 import React from 'react';
 import {Button,Card} from "react-bootstrap";
 
-const Meme =({meme})=> {
+const Meme =(data)=> {
 
-    return (<Card>
+    return (
+        <Card>
             <Card.Title>
-                {meme.title}
+                {data.meme.title}
             </Card.Title>
             <Card.Body>
-                {meme.description}
-                {meme.year}
-                {meme.added_at}
-                {meme.likes}
-                {meme.views}
+                {data.meme.description}
+                {data.meme.year}
+                {data.meme.added_at}
+                {data.meme.likes}
+                {data.meme.views}
                 <Button>
                     <img src={"../img/thumbs_up.png"} alt={""}/>
                 </Button>

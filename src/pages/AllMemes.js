@@ -1,7 +1,7 @@
 import React from "react";
 import '../styles/AllMemes.css';
 import {ListGroup, ListGroupItem, Button} from "react-bootstrap";
-import GetMemes from "../meta/GetMemes";
+import NewGetMemes from "../meta/NewGetMemes";
 
 /***
  *
@@ -10,7 +10,8 @@ import GetMemes from "../meta/GetMemes";
  */
 const AllMemes = ({location}) => {
 
-    const data = GetMemes();
+    const data = NewGetMemes();
+    console.log(data);
 
     return (
         <div id={"all-memes"}>
