@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../meta/Layout";
+import '../styles/AllMemes.css';
 
 /***
  *
@@ -8,9 +8,9 @@ import Layout from "../meta/Layout";
  */
 const AllMemes = ({location}) => {
     return (
-        <Layout>
-            <h1>Strona pokazywania wielu memów<span>{location.pathname}</span></h1>
-        </Layout>
+        <div id={"all-memes"}>
+            <h1>Strona pokazywania wielu memów</h1>
+        </div>
     );
 }
 
