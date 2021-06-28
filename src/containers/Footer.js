@@ -21,8 +21,6 @@ const Footer =()=> {
 
     let time = `${hrs}:${mins}:${secs}:${period}`;
 
-    // TODO -- finish the real-time clock
-
     //setInterval(clock,1000);
 
     return (

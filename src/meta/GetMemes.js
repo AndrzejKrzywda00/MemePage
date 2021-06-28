@@ -12,7 +12,7 @@ function GetMemes() {
     const [items, setItems] = useState([]);
 
     useEffect(()=> {
-            // TODO -- fix the problem with synchronization
+
         fetch("https://s108.labagh.pl/memes",
             {
                 method: "GET",
