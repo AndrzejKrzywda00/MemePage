@@ -1,6 +1,5 @@
 import './App.css';
 import Layout from "./meta/Layout";
-import SmallMeme from "./components/SmallMeme";
 import Logo from "./img/meme_page_logo.png";
 import {BrowserRouter as Router, Link, Route, Switch} from "react-router-dom";
 import Main from "./pages/Main";
@@ -8,14 +7,14 @@ import RandomMeme from "./pages/RandomMeme";
 import AllMemes from "./pages/AllMemes";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-
+import './styles/Navabr.css';
 
 function App() {
     return (
     <Layout>
         <Router>
             {/*A navbar with functional links*/}
-            <nav className="navbar">
+            <nav className="navbar" id={"navbar"}>
                 <img src={Logo} id="logo"/>
                 <h1>Galeria memów</h1>
                 <div className="links">

@@ -1,7 +1,6 @@
 import React from "react";
 import "../styles/Register.css";
 import {Button, Form, FormControl, FormLabel} from "react-bootstrap";
-import PostRegister from "../meta/PostRegister";
 
 class Register extends React.Component {
 
@@ -14,18 +13,40 @@ class Register extends React.Component {
             password: ''
         };
 
-        this.handleChange = this.handleChange.bind(this);
+        this.handleChangeNick = this.handleChangeNick.bind(this);
+        this.handleChangeEmail = this.handleChangeEmail.bind(this);
+        this.handleChangePassword = this.handleChangePassword.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange(event) {
-        this.setState({value: event.target.value});
+    handleChangeNick =(event)=> {
+        this.setState({nick: event.target.value});
     }
 
-    handleSubmit(event) {
-        this.preventDefault();
-        PostRegister(this.state);
-        console.log("Wykonano dodanie użytkownika z nickiem : " + this.state.nick);
+    handleChangeEmail =(event)=> {
+        this.setState({email: event.target.value});
+    }
+
+    handleChangePassword =(event)=> {
+        this.setState({password: event.target.value});
+    }
+
+    handleSubmit =(event)=> {
+        let result = fetch("https://s108.labagh.pl/users", {
+            method: "POST",
+            body: JSON.stringify({
+                nick: this.state.nick,
+                email: this.state.email,
+                password: this.state.password
+            }),
+            headers: {
+                'Content-Type': 'text/plain',
+                'Accept': '*/*'
+            }
+        }).then(response => response.json());
+        console.log(result);
+
+        event.preventDefault();
     }
 
     render () {
@@ -35,17 +56,17 @@ class Register extends React.Component {
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Group>
                         <FormLabel>Twój nick</FormLabel>
-                        <FormControl type={"nick"} placeholder={"np. kwiatuszek123"} id={"nick-input"} value={this.state.nick} onChange={this.handleChange} />
+                        <FormControl type="nick" placeholder={"np. kwiatuszek123"} id={"nick-input"} onChange={this.handleChangeNick} />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Adres email</Form.Label>
-                        <Form.Control type="email" placeholder="np. jan.kowalski@gmail.com" value={this.state.email} onChange={this.handleChange}/>
+                        <Form.Control type="email" placeholder="np. jan.kowalski@gmail.com" onChange={this.handleChangeEmail}/>
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Hasło</Form.Label>
-                        <Form.Control type="password" placeholder="" value={this.state.password} onChange={this.handleChange}/>
+                        <Form.Control type="password" placeholder="" onChange={this.handleChangePassword}/>
                     </Form.Group>
-                    <Button variant={"success"} type={"submit"}>Zarejestruj się</Button>
+                    <Button variant={"success"} type="submit">Zarejestruj się</Button>
                 </Form>
             </div>
         );

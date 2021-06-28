@@ -77,7 +77,7 @@ class UserController
         }
 
         $this->usersGateway->insert($input);
-        $response['status_code_header'] = 'HTTP/1.1 201 Created';
+        $response['status_code_header'] = 'HTTP/1.1 200 OK';
         $response['body'] = null;
         return $response;
     }

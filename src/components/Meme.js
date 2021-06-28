@@ -1,25 +1,32 @@
 import React from 'react';
 import {Button,Card} from "react-bootstrap";
 
-const Meme =(data)=> {
+class Meme extends React.Component {
 
-    return (
-        <Card>
-            <Card.Title>
-                {data.meme.title}
-            </Card.Title>
-            <Card.Body>
-                {data.meme.description}
-                {data.meme.year}
-                {data.meme.added_at}
-                {data.meme.likes}
-                {data.meme.views}
-                <Button>
-                    <img src={"../img/thumbs_up.png"} alt={""}/>
-                </Button>
-            </Card.Body>
-        </Card>
-    );
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        console.log(this.props.meme);
+        return (
+            <Card>
+                <Card.Title>
+                    {this.props.meme.title}
+                </Card.Title>
+                <Card.Body>
+                    {this.props.meme.description}
+                    {this.props.meme.year}
+                    {this.props.meme.added_at}
+                    {this.props.meme.likes}
+                    {this.props.meme.views}
+                    <Button>
+                        <img src={"../img/thumbs_up.png"} alt={""}/>
+                    </Button>
+                </Card.Body>
+            </Card>
+        );
+    }
 }
 
 export default Meme;

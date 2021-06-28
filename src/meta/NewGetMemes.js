@@ -1,16 +1,21 @@
 import React from 'react';
 
-async function NewGetMemes() {
+function NewGetMemes() {
 
-    return await
-        fetch('https://s108.labagh.pl/memes/',
+    const data = [];
+
+    fetch('https://s108.labagh.pl/memes/',
             {
                 Method: "GET",
                 headers: new Headers({
                     Accept: "*/*"
                 }),
             })
-            .then(response => response.json());
+            .then(response => response.json())
+            .then(data => {
+                return data;
+            });
+    return data;
 }
 
 export default NewGetMemes;
