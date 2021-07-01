@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Button, Form} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import "../form.css";
-import Layout from "../meta/Layout";
 
 class AddMeme extends Component {
 
@@ -23,7 +22,7 @@ class AddMeme extends Component {
                 </Form.Group>
                 <Form.Group controlId="formAddMeme">
                     <Form.Label>Wybierz zdjęcie</Form.Label>
-                    <input type={"file"} class="form-control-file">Wybierz plik</input>
+                    <input type={"file"} className="form-control-file">Wybierz plik</input>
                 </Form.Group>
                 <Button variant={"primary"} type={"submit"}>Dodaj</Button>
             </Form>

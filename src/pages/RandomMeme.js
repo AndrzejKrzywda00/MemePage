@@ -2,7 +2,6 @@ import React from "react";
 import '../styles/RandomMeme.css';
 import GetRandomMeme from "../meta/GetRandomMeme";
 import Image from "../img/thumbs_up.png";
-import Meme from "../components/Meme";
 import GetMemes from "../meta/GetMemes";
 import {Button, Card} from "react-bootstrap";
 

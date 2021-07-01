@@ -7,6 +7,7 @@ import RandomMeme from "./pages/RandomMeme";
 import AllMemes from "./pages/AllMemes";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import AddMeme from "./pages/AddMeme";
 
 /*
     DO ZROBIENIE JESZCZE
@@ -40,6 +41,9 @@ function App() {
             <Switch>
                 <Route path={"/memes/random"}>
                     <RandomMeme path/>
+                </Route>
+                <Route>
+                    <AddMeme/>
                 </Route>
                 <Route path={"/memes"}>
                     <AllMemes path={"/memes"}/>
