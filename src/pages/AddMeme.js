@@ -14,7 +14,7 @@ class AddMeme extends Component {
 
     }
 
-    render () {
+    render (){
         return (
             <Form id={"add-meme"} onSubmit={this.handleAddMeme}>
                 <h3>Dodaj swojego mema</h3>
