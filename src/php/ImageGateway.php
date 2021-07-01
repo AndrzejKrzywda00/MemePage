@@ -9,15 +9,27 @@ class ImageGateway
         $this->db = $db;
     }
 
-    public function find($name)
+    public function findName($meme_id)
     {
-        $stmt = "SELECT * FROM images WHERE name = :name";
+        $stmt = "SELECT name FROM images WHERE meme_id = :meme_id";
         try {
             $stmt = $this->db->prepare($stmt);
-            $stmt->execute(array('name' => $name));
+            $stmt->execute(array('meme_id' => $meme_id));
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
-            false;
+            return false;
+        }
+    }
+
+    public function find($meme_id)
+    {
+        $stmt = "SELECT * FROM images WHERE meme_id = :meme_id";
+        try {
+            $stmt = $this->db->prepare($stmt);
+            $stmt->execute(array('meme_id' => $meme_id));
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            return false;
         }
     }
 

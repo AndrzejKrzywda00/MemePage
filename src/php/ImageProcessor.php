@@ -8,16 +8,18 @@ class ImageProcessor
     private $tmp_name;
     private $position;
     private $fileExtension;
+    private $memeId;
 
     private $requestMethod;
     private $reasonProblem;
 
     private $imageGateway;
 
-    public function __construct($db, $requestMethod)
+    public function __construct($db, $requestMethod, $memeId)
     {
         $this->requestMethod = $requestMethod;
         $this->imageGateway = new ImageGateway($db);
+        $this->memeId = $memeId;
 
         if($requestMethod == "POST") {
             $this->name = $_FILES["file"]["name"];
@@ -69,7 +71,15 @@ class ImageProcessor
         }
 
         if($this->requestMethod == 'GET') {
-            // TODO -- handle giving the image data
+            if(is_numeric($this->memeId)) {
+                if($this->imageGateway->find($memeId)) {
+                    $name = $this->imageGateway->findName($memeId);
+                    $path = 'Uploads/images/' . $name;
+                    header('Content-Type: image/png');
+                    header('Content-Disposition: inline; filename="' . $name . '"');
+                    readfile($path);
+                }
+            }
         }
 
         if($this->requestMethod != 'POST' && $this->requestMethod != 'DELETE' && $this->requestMethod != 'GET') {
@@ -101,7 +111,8 @@ class ImageProcessor
                 if(!$imageFound) {
                     if(move_uploaded_file($this->tmp_name, $path . $this->name)) {
                         $input = json_decode(file_get_contents("php://input"), TRUE);
-                        $this->imageGateway->insert($this->name);   // here it needs to be an array
+                        $this->imageGateway->insert($this->name);
+                        // TODO -- provide code with meme_id to bind to :meme_id in $input
                         return true;
                     }
                 }

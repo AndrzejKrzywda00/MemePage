@@ -10,6 +10,10 @@ class Comments extends React.Component{
             data: []
         }
     }
+
+    // TODO -- make fetch take data from specific meme_id (GET does not have body)
+    // TODO -- add styling
+
     async componentDidMount() {
         await fetch('https://s108.labagh.pl/comments/',
             {
@@ -24,6 +28,7 @@ class Comments extends React.Component{
                 this.setState({data: data});
             });
     }
+
     render() {
         const {isLoaded, data} = this.state;
         return (

@@ -75,6 +75,10 @@
             $controller->processRequest();
             break;
         case 'image':
-            $handler = new ImageProcessor($dbConnection, $requestMethod);
+            $imageId = null;
+            if(isset($uri[2])) {
+                $imageId = $uri[2];
+            }
+            $handler = new ImageProcessor($dbConnection, $requestMethod, $imageId);
             $handler->process();
     }

@@ -26,6 +26,8 @@ class Login extends Component {
         this.setState({password: event.target.value});
     }
 
+    // TODO -- make this work -- change method to http POST -- GET does not support body
+
     handleLogin =(event)=> {
         let result = fetch('https://s108.labagh.pl/users', {
             method: 'GET',

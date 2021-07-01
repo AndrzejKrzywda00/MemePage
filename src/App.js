@@ -11,13 +11,13 @@ import './styles/Navabr.css';
 
 
 /*
-DO ZROBIENIE JESZCZE
+    DO ZROBIENIE JESZCZE
     + mechanizm weryfikacji użytkownika - logowanie
     + przechowywanie informacji czy użytkownik jest zalogowany i wyrzucanie odpowiedniego wyglądu
     + cały komponent bloku komentrarzy, pojedycznego komenatarza i pobieranie danych z API do niego
     + cały wygląd pojedynczego mema - duży
     + handling klikania w przycisk żeby otworzyć mema w liście wszystkich memów
-    + dodawanie swojego mema (po zalogowaniu)
+    + dodawanie swojego mema (po zalogowaniu)(react-bootstrap)
     + usuwanie, dodawanie, modyfikowanie komentarzy po zalogowaniu
  */
 

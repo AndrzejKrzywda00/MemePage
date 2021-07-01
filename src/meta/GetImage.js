@@ -2,10 +2,6 @@ import React from 'react';
 
 function GetImage(props) {
 
-    const body = {
-        "id": props.id
-    }
-
     fetch('https://s108.labagh.pl/images',
         {
             Method: "GET",
