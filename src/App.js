@@ -7,8 +7,6 @@ import RandomMeme from "./pages/RandomMeme";
 import AllMemes from "./pages/AllMemes";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import './styles/Navabr.css';
-
 
 /*
     DO ZROBIENIE JESZCZE
@@ -29,12 +27,13 @@ function App() {
             <nav className="navbar" id={"navbar"}>
                 <img src={Logo} id="logo"/>
                 <h1>Galeria memów</h1>
-                <div className="links">
+                <div id={"links"}>
                     <Link to={"/"}>Strona domowa</Link>
                     <Link to={"/memes/random"}>Losowy mem</Link>
                     <Link to={"/memes"} id="meme_gallery_link">Wszystkie memy</Link>
                     <Link to={"/users/register"}>Rejestracja</Link>
                     <Link to={"/users/login"}>Logowanie</Link>
+                    <Link to={"/memes/add"}>Dodaj mema</Link>
                 </div>
             </nav>
             {/*A <Switch> looks through its children <Route>'s and renders the first one that matches what we wanted*/}

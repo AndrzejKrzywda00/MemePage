@@ -1,34 +1,33 @@
-const Footer =()=> {
+import '../styles/Footer.css';
+import React from "react";
 
-    let date = new Date();
-    let hrs = date.getHours();
-    let mins = date.getMinutes();
-    let secs = date.getSeconds();
+class Footer extends React.Component {
 
-    let period = "AM";
-    if(hrs === 0) {
-        hrs = 12;
+    constructor(props) {
+        super(props);
+        this.state = {time:new Date()}
     }
 
-    if(hrs > 12) {
-        hrs = hrs - 12;
-        period = "PM";
+    currentTime() {
+        this.setState({
+            time: new Date()
+        })
     }
 
-    hrs = hrs < 10 ? "0" + hrs : hrs;
-    mins = mins < 10 ? "0" + mins : mins;
-    secs = secs < 10 ? "0" + secs : secs;
+    componentDidMount() {
+        setInterval(()=> this.currentTime(),1000);
+    }
 
-    let time = `${hrs}:${mins}:${secs}:${period}`;
-
-    //setInterval(clock,1000);
-
-    return (
-        <footer>
-            <p>Strona wykonana przez zespół w składzie: Andrzej Krzywda, Wojtek Mościński, Kamil Łukasik</p>
-        </footer>
-    );
-
+    render() {
+        return (
+            <footer id={"footer"}>
+                <p id={"footer-string"}>Strona wykonana przez zespół w składzie: Andrzej Krzywda, Wojtek Mościński, Kamil Łukasik</p>
+                <h2 id={"time-string"}>
+                    {this.state.time.toLocaleTimeString()}
+                </h2>
+            </footer>
+        );
+    }
 }
 
 export default Footer;
