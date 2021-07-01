@@ -16,11 +16,8 @@ class BaseComments extends React.Component {
             {
                 Method: "GET",
                 headers: new Headers({
-                    Accept: '*/*'
-                }),
-                body: {
-                    'meme_id': this.state.id
-                }
+                    Accept: "*/*"
+                })
             })
             .then(response => response.json())
             .then(data => {

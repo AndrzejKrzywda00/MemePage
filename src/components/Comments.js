@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Card, ListGroup, ListGroupItem} from "react-bootstrap";
+import {Button, ListGroup, ListGroupItem} from "react-bootstrap";
 
 class Comments extends React.Component{
 
