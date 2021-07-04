@@ -22,7 +22,7 @@ class AddMeme extends Component {
                 </Form.Group>
                 <Form.Group controlId="formAddMeme">
                     <Form.Label>Wybierz zdjęcie</Form.Label>
-                    <input type={"file"} className="form-control-file">Wybierz plik</input>
+                    <Form.Group type={"file"} className="form-control-file">Wybierz plik</Form.Group>
                 </Form.Group>
                 <Button variant={"primary"} type={"submit"}>Dodaj</Button>
             </Form>

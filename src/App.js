@@ -42,7 +42,7 @@ function App() {
                 <Route path={"/memes/random"}>
                     <RandomMeme path/>
                 </Route>
-                <Route>
+                <Route path={"/memes/add"}>
                     <AddMeme/>
                 </Route>
                 <Route path={"/memes"}>
