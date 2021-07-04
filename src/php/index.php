@@ -39,7 +39,7 @@
      * memes/edit/id
      */
 
-    $endpoints = ['users','memes','comments','image'];
+    $endpoints = ['users','memes','comments','images'];
 
     if(!in_array($uri[1], $endpoints)) {
         header("HTTP/1.1 404 Not Found");
@@ -74,7 +74,7 @@
             $controller = new CommentsController($dbConnection, $requestMethod);
             $controller->processRequest();
             break;
-        case 'image':
+        case 'images':
             $imageId = null;
             if(isset($uri[2])) {
                 $imageId = $uri[2];

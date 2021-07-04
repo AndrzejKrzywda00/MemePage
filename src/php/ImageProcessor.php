@@ -44,6 +44,7 @@ class ImageProcessor
             }
         }
 
+        // TODO -- make this work
         if($this->requestMethod == 'DELETE') {
             if($name = $this->getFileName()) {
                 if($this->imageGateway->find($name)) {
@@ -110,9 +111,9 @@ class ImageProcessor
                 $imageFound = $this->imageGateway->find($this->name);
                 if(!$imageFound) {
                     if(move_uploaded_file($this->tmp_name, $path . $this->name)) {
-                        $input = json_decode(file_get_contents("php://input"), TRUE);
-                        $this->imageGateway->insert($this->name);
-                        // TODO -- provide code with meme_id to bind to :meme_id in $input
+                        $data['name'] = $this->name;
+                        $data['meme_id'] = $this->memeId;
+                        $this->imageGateway->insert($data);
                         return true;
                     }
                 }
