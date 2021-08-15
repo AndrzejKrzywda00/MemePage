@@ -39,7 +39,7 @@
      * memes/edit/id
      */
 
-    $endpoints = ['users','memes','comments','images'];
+    $endpoints = ['users','memes','comments','images','login'];
 
     if(!in_array($uri[1], $endpoints)) {
         header("HTTP/1.1 404 Not Found");
@@ -81,4 +81,6 @@
             }
             $handler = new ImageProcessor($dbConnection, $requestMethod, $imageId);
             $handler->process();
+        case 'login':
+            // TODO -- make logging controller
     }

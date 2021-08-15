@@ -5,27 +5,51 @@ import "../form.css";
 
 class AddMeme extends Component {
 
+    /*
+    How does this form should look like?
+    1. Adding title
+    2. Adding explanation
+    3. Adding a photo
+     */
+
     constructor(props) {
         super(props);
+        this.state = {
+            selectedFile: null
+        }
     }
 
-    handleAddMeme(){
-
+    handleImageChange = event => {
+        this.setState({
+            selectedFile: event.target.files[0]
+        });
     }
 
-    render (){
+    handleSubmit() {
+        // here make it work with asking the backend to save data
+    }
+
+    render () {
         return (
-            <Form id={"add-meme"} onSubmit={this.handleAddMeme}>
-                <h3>Dodaj swojego mema</h3>
-                <Form.Group controlId="formAddMemeTitle">
-                    <Form.Label>Akceptowane są zdjęcia w formatach...</Form.Label>
-                </Form.Group>
-                <Form.Group controlId="formAddMeme">
-                    <Form.Label>Wybierz zdjęcie</Form.Label>
-                    <Form.Group type={"file"} className="form-control-file">Wybierz plik</Form.Group>
-                </Form.Group>
-                <Button variant={"primary"} type={"submit"}>Dodaj</Button>
-            </Form>
+            <div>
+                <h2>Dodaj swojego mema</h2>
+                <Form>
+                    <Form.Group>
+                        <label>Tytuł</label>
+                        <input name={"text"} required={true}/>
+                    </Form.Group>
+                    <Form.Group>
+                        <label>Wyjaśnienie mema</label>
+                        <input name={"text-multiline"} required={true}/>
+                    </Form.Group>
+                    <Form.Group>
+                        <label>Dodaj obrazek</label>
+                        <input type={"file"} onChange={this.handleImageChange}/>
+                    </Form.Group>
+
+                    <Button onClick={this.handleSubmit}>Dodaj mema</Button>
+                </Form>
+            </div>
         );
     }
 
