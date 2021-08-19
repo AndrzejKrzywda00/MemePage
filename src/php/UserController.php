@@ -10,10 +10,10 @@ class UserController
 
     private $problemReason;
 
-    public function __construct($db, $requestMethod, $resourceId)
+    public function __construct($db, $requestMethod, $action)
     {
         $this->requestMethod = $requestMethod;
-        $this->resourceId = $resourceId;
+        $this->resourceId = $action;
 
         $this->usersGateway = new UsersGateway($db);
     }
@@ -30,7 +30,12 @@ class UserController
                 }
                 break;
             case 'POST':
-                $response = $this->createUserFromRequest();
+                if($this->resourceId && $this->resourceId == 'add') {
+                    $response = $this->logUserFromRequest();
+                }
+                else {
+                    $response = $this->createUserFromRequest();
+                }
                 break;
             case 'PUT':
                 $response = $this->updateUserFromRequest($this->resourceId);
@@ -79,6 +84,15 @@ class UserController
         $this->usersGateway->insert($input);
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
         $response['body'] = null;
+        return $response;
+    }
+
+    private function logUserFromRequest(): array
+    {
+        $input = (array) json_decode(file_get_contents("php://input"), TRUE);
+        $result = $this->usersGateway->findUserByLoging($input);
+        $response['status_code_header'] = 'HTTP/1.1 200 OK';
+        $response['body'] = json_encode($result);
         return $response;
     }
 

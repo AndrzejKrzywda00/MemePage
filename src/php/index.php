@@ -22,23 +22,6 @@
     $uri = parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH);
     $uri = explode('/', $uri);
 
-    /*
-     * here implement decision process in which, based on headers decide which entity will be changed
-     * users, memes or comments
-     * so basically if request starts with users - we refer to users and so on ...
-     * options:
-     * users
-     * users/id
-     * ---
-     * memes (by views)
-     * memes/random
-     * memes/popular (by likes)
-     * memes/disputed (by comments)
-     * memes/add
-     * memes/delete/id
-     * memes/edit/id
-     */
-
     $endpoints = ['users','memes','comments','images','login'];
 
     if(!in_array($uri[1], $endpoints)) {
@@ -55,11 +38,11 @@
     $endpoint = $uri[1];
     switch ($endpoint) {
         case 'users':
-            $userId = null;
+            $action = null;
             if(isset($uri[2])) {
-                $userId = $uri[2];
+                $action = $uri[2];
             }
-            $controller = new UserController($dbConnection, $requestMethod, $userId);
+            $controller = new UserController($dbConnection, $requestMethod, $action);
             $controller->processRequest();
             break;
         case 'memes':

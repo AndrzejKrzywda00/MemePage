@@ -2,7 +2,6 @@
 
 class UsersGateway
 {
-    // TODO -- remove exit() in exception and make appropriate HTTP responses
     private $db;
 
     public function __construct($db)
@@ -85,6 +84,18 @@ class UsersGateway
             $stmt = $this->db->prepare($stmt);
             $stmt->execute(array('id' => $id));
             return $stmt->rowCount();
+        } catch (PDOException $e) {
+            exit($e->getMessage());
+        }
+    }
+
+    public function findUserByLoging($input)
+    {
+        $stmt = "SELECT * FROM users WHERE :nick = nick AND :password = password";
+        try {
+            $stmt = $this->db->query($stmt);
+            $stmt->execute(array('nick' => $input['nick'], 'password' => $input['password']));
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             exit($e->getMessage());
         }

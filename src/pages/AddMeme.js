@@ -43,6 +43,10 @@ class AddMeme extends Component {
                         <input name={"text-multiline"} required={true}/>
                     </Form.Group>
                     <Form.Group>
+                        <label>Rok powstania</label>
+                        <input name={'text'} required={true}/>
+                    </Form.Group>
+                    <Form.Group>
                         <label>Dodaj obrazek</label>
                         <input type={"file"} onChange={this.handleImageChange}/>
                     </Form.Group>
