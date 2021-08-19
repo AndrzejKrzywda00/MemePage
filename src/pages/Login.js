@@ -29,7 +29,7 @@ class Login extends Component {
     // TODO -- for today - make work login & register & all other http requests
 
     handleLogin =(event)=> {
-        let result = fetch('https://s108.labagh.pl/users', {
+        let result = fetch('https://s108.labagh.pl/users/add', {
             method: 'POST',
             body: JSON.stringify({
                 email: this.state.email,

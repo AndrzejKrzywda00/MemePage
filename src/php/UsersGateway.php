@@ -91,10 +91,10 @@ class UsersGateway
 
     public function findUserByLoging($input)
     {
-        $stmt = "SELECT * FROM users WHERE :nick = nick AND :password = password";
+        $stmt = "SELECT * FROM users WHERE :email = email AND :password = password";
         try {
             $stmt = $this->db->query($stmt);
-            $stmt->execute(array('nick' => $input['nick'], 'password' => $input['password']));
+            $stmt->execute(array('email' => $input['email'], 'password' => $input['password']));
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             exit($e->getMessage());
