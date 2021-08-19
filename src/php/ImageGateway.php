@@ -35,23 +35,23 @@ class ImageGateway
 
     public function insert($input)
     {
-        $stmt = "INSERT INTO images (meme_id, name) VALUES (:meme_id, :name)";
+        $stmt = "INSERT INTO images (meme_id, uri) VALUES (:meme_id, :uri)";
         try {
             $stmt = $this->db->prepare($stmt);
             $stmt->execute(array('meme_id' => $input['meme_id'],
-                                 'name' => $input['name']));
+                                 'uri' => $input['uri']));
             return $stmt->rowCount();
         } catch (PDOException $e) {
             return false;
         }
     }
 
-    public function delete($name)
+    public function delete($meme_id)
     {
-        $stmt = "DELETE FROM images WHERE name = :name";
+        $stmt = "DELETE FROM images WHERE meme_id = :meme_id";
         try {
             $stmt = $this->db->prepare($stmt);
-            $stmt->execute(array('name' => $name));
+            $stmt->execute(array('meme_id' => $meme_id));
             return $stmt->rowCount();
         } catch (PDOException $e) {
             return false;
