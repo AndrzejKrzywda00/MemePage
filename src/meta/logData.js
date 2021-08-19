@@ -1,0 +1,3 @@
+var logged = {
+    value: false
+};

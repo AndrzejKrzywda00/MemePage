@@ -3,6 +3,7 @@ import {Button, Form} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import "../form.css";
 import Layout from "../meta/Layout";
+import logData from '../meta/logData';
 
 class Login extends Component {
 
@@ -36,12 +37,16 @@ class Login extends Component {
                 password: this.state.password
             }),
             headers: {
-                "Content-Type": "text/plain",
+                "Content-Type": "application/json",
                 "Accept": "*/*"
             }
         }).then(response => response.json());
         console.log(result);
         event.preventDefault();
+
+        if(result['email'] && result['nick']) {
+            logData.value = true;
+        }
     }
 
     render () {
