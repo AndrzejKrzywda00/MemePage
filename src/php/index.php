@@ -3,7 +3,7 @@
     ini_set('display_errors', 1);
     error_reporting(E_ALL);
 
-    require '/home/s401454/vendor/autoload.php';
+    //require '/home/s401454/vendor/autoload.php';
 
     include("meta_functions.php");
     include("DatabaseConnector.php");

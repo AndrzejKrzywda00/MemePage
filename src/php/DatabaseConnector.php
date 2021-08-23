@@ -7,9 +7,9 @@ class DatabaseConnector
     public function __construct()
     {
         $host = 'localhost';
-        $db = 's108';
-        $user = 's108';
-        $pass = 'kxh76gzn';
+        $db = 's401454';
+        $user = 's401454';
+        $pass = 'm5xgb57mwkz6';
 
         // TODO -- solve this with usage of $config or env()
 
