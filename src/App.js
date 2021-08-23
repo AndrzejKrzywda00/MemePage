@@ -21,6 +21,7 @@ import AddMeme from "./pages/AddMeme";
  */
 
 function App() {
+    localStorage.setItem('logged',false);
     return (
     <Layout>
         <Router>

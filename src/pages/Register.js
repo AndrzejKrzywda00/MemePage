@@ -32,7 +32,7 @@ class Register extends React.Component {
     }
 
     handleSubmit =(event)=> {
-        let result = fetch("https://s108.labagh.pl/users", {
+        let result = fetch("https://s401454.labagh.pl/users", {
             method: "POST",
             body: JSON.stringify({
                 nick: this.state.nick,
@@ -40,7 +40,7 @@ class Register extends React.Component {
                 password: this.state.password
             }),
             headers: {
-                'Content-Type': 'text/plain',
+                'Content-Type': 'application/json',
                 'Accept': '*/*'
             }
         }).then(response => response.json());

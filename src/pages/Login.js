@@ -3,7 +3,6 @@ import {Button, Form} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import "../form.css";
 import Layout from "../meta/Layout";
-import logData from '../meta/logData';
 
 class Login extends Component {
 
@@ -29,24 +28,21 @@ class Login extends Component {
 
     // TODO -- for today - make work login & register & all other http requests
 
-    handleLogin =(event)=> {
-        let result = fetch('https://s108.labagh.pl/users/add', {
+    async handleLogin() {
+        let item = (this.state.email, this.state.password);
+        let result = await fetch('https://s401454.labagh.pl/users/add', {
             method: 'POST',
-            body: JSON.stringify({
-                email: this.state.email,
-                password: this.state.password
-            }),
+            body: JSON.stringify(item),
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "*/*"
             }
-        }).then(response => response.json());
+        });
+        result = await result.json();
         console.log(result);
-        event.preventDefault();
 
-        if(result['email'] && result['nick']) {
-            logData.value = true;
-        }
+        // if result successfull
+        // localStorage.setItem('logged',true) <- here is way to access it
     }
 
     render () {
