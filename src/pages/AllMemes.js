@@ -2,7 +2,6 @@ import React from "react";
 import '../styles/AllMemes.css';
 import {ListGroup, ListGroupItem, Button} from "react-bootstrap";
 import NewGetMemes from "../meta/NewGetMemes";
-import BaseComments from "../components/BaseComments";
 
 class AllMemes extends React.Component {
 

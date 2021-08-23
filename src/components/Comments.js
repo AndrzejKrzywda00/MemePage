@@ -1,5 +1,6 @@
 import React from "react";
 import {Button, ListGroup, ListGroupItem} from "react-bootstrap";
+import '../styles/Comments.css';
 
 class Comments extends React.Component{
 
@@ -7,15 +8,13 @@ class Comments extends React.Component{
         super(props);
         this.state = {
             isLoaded: false,
-            data: []
+            data: [],
+            memeId: props.memeId
         }
     }
 
-    // TODO -- make fetch take data from specific meme_id (GET does not have body)
-    // TODO -- add styling
-
     async componentDidMount() {
-        await fetch('https://s108.labagh.pl/comments/',
+        await fetch('https://s108.labagh.pl/comments/' + this.state.memeId,
             {
                 Method: "GET",
                 headers: new Headers({
@@ -37,12 +36,9 @@ class Comments extends React.Component{
                     <h1>Komentarze</h1>
                     <ListGroup>
                         {data.map( item => (
-                            <ListGroupItem id={"item"}>
-                                <h4 id={"author"}>{item.author_id}</h4>
+                            <ListGroupItem id={"comment"}>
+                                <h4 id={"author"}>{item.author_id} : {item.added_at}</h4>
                                 <p id={"content"}>{item.content}</p>
-                                <Button>
-                                    <img src={"../img/thumbs_up.png"} alt={""}/>
-                                </Button>
                             </ListGroupItem>
                         ))}
                     </ListGroup>

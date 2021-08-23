@@ -11,7 +11,9 @@ class Login extends Component {
 
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            isLoaded: false,
+            data: []
         }
 
         this.handleChangeEmail = this.handleChangeEmail.bind(this);
@@ -26,23 +28,24 @@ class Login extends Component {
         this.setState({password: event.target.value});
     }
 
-    // TODO -- for today - make work login & register & all other http requests
-
-     handleLogin() {
-        let item = (this.state.email, this.state.password);
+     handleLogin =(event)=> {
         let result = fetch('https://s401454.labagh.pl/users/add', {
             method: 'POST',
-            body: JSON.stringify(item),
+            body: JSON.stringify({
+                email: this.state.email,
+                password: this.state.password
+            }),
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "*/*"
             }
-        });
-        result = result.json();
-        console.log(JSON.stringify(item));
-        console.log(result);
-        // if result successfull
-        // localStorage.setItem('logged',true) <- here is way to access it
+        }).then(response => response.json())
+            .then(data => {
+                this.setState({isLoaded: true});
+                this.setState({data: data});
+            });
+        console.log(this.state.data);
+        event.preventDefault();
     }
 
     render () {

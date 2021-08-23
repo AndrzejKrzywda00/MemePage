@@ -43,6 +43,9 @@ class UserController
             case 'DELETE':
                 $response = $this->deleteUser($this->resourceId);
                 break;
+            case 'OPTIONS':
+                $response['status_code_header'] = 'HTTP/1.1 200 OK';
+                break;
             default:
                 $response = $this->notFoundResponse();
                 break;
