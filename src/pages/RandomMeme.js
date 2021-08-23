@@ -21,7 +21,7 @@ class RandomMeme extends React.Component {
     }
 
     async componentDidMount() {
-        await fetch ('https://s108.labagh.pl/memes/random',
+        await fetch ('https://s401454.labagh.pl/memes/random',
             {
                 Method: "GET",
                 headers: new Headers({

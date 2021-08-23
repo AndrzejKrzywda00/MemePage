@@ -4,11 +4,6 @@ import {ListGroup, ListGroupItem, Button} from "react-bootstrap";
 import NewGetMemes from "../meta/NewGetMemes";
 import BaseComments from "../components/BaseComments";
 
-/***
- *
- * @param location is location of this subpage provied by router
- * @returns {JSX.Element} component for displaying list of all memes
- */
 class AllMemes extends React.Component {
 
     constructor(props) {
@@ -20,7 +15,7 @@ class AllMemes extends React.Component {
     }
 
     async componentDidMount() {
-        await fetch('https://s108.labagh.pl/memes/',
+        await fetch('https://s401454.labagh.pl/memes/',
             {
                 Method: "GET",
                 headers: new Headers({
