@@ -35,7 +35,6 @@ class AllMemes extends React.Component {
                 isLoaded ?
                     <div id={"all-memes"}>
                         <h1>Wszystkie memy</h1>
-                        <h2>Tu znajdziesz podsumowanie wszystkich informacji na naszej stronie</h2>
                         <ListGroup>
                             {data.map( item => (
                                 <ListGroupItem id={"item"}>

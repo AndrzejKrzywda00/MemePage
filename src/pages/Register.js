@@ -45,7 +45,6 @@ class Register extends React.Component {
             }
         }).then(response => response.json());
         console.log(result);
-
         event.preventDefault();
     }
 

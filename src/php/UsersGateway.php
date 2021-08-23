@@ -34,7 +34,7 @@ class UsersGateway
 
     public function insert(Array $input)
     {
-        $stmt = "INSERT INTO users (nick, email, password, created, edits) VALUES (:nick, :email, :password, NOW(), 0);";
+        $stmt = "INSERT INTO users (nick, email, password) VALUES (:nick, :email, :password);";
 
         try {
             $stmt = $this->db->prepare($stmt);
@@ -91,9 +91,9 @@ class UsersGateway
 
     public function findUserByLoging($input)
     {
-        $stmt = "SELECT * FROM users WHERE :email = email AND :password = password";
+        $stmt = "SELECT * FROM users WHERE email = :email AND password = :password";
         try {
-            $stmt = $this->db->query($stmt);
+            $stmt = $this->db->prepare($stmt);
             $stmt->execute(array('email' => $input['email'], 'password' => $input['password']));
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {

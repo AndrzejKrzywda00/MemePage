@@ -76,7 +76,6 @@ class UserController
     private function createUserFromRequest(): array
     {
         $input = (array) json_decode(file_get_contents("php://input"), TRUE);
-
         if(!$this->validateUser($input)) {
             return $this->unprocessableEntityResponse();
         }

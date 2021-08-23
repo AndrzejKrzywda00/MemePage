@@ -28,9 +28,9 @@ class Login extends Component {
 
     // TODO -- for today - make work login & register & all other http requests
 
-    async handleLogin() {
+     handleLogin() {
         let item = (this.state.email, this.state.password);
-        let result = await fetch('https://s401454.labagh.pl/users/add', {
+        let result = fetch('https://s401454.labagh.pl/users/add', {
             method: 'POST',
             body: JSON.stringify(item),
             headers: {
@@ -38,9 +38,9 @@ class Login extends Component {
                 "Accept": "*/*"
             }
         });
-        result = await result.json();
+        result = result.json();
+        console.log(JSON.stringify(item));
         console.log(result);
-
         // if result successfull
         // localStorage.setItem('logged',true) <- here is way to access it
     }
