@@ -3,7 +3,7 @@
     ini_set('display_errors', 1);
     error_reporting(E_ALL);
 
-    require  __DIR__ . '/vendor/autoload.php';
+    require '/home/s401454/vendor/autoload.php';
 
     include("meta_functions.php");
     include("DatabaseConnector.php");
@@ -64,6 +64,4 @@
             }
             $handler = new ImageProcessor($dbConnection, $requestMethod, $imageId);
             $handler->process();
-        case 'login':
-            // TODO -- make logging controller
     }
