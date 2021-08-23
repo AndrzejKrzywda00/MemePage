@@ -43,7 +43,7 @@ class Register extends React.Component {
                 'Content-Type': 'application/json',
                 'Accept': '*/*'
             }
-        }).then(response => response.json());
+        });
         console.log(result);
         event.preventDefault();
     }

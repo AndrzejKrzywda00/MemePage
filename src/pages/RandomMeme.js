@@ -1,8 +1,6 @@
 import React from "react";
 import '../styles/RandomMeme.css';
-import GetRandomMeme from "../meta/GetRandomMeme";
 import Image from "../img/thumbs_up.png";
-import GetMemes from "../meta/GetMemes";
 import {Button, Card} from "react-bootstrap";
 
 /***
@@ -36,7 +34,7 @@ class RandomMeme extends React.Component {
     }
 
     handleLike() {
-        if (this.state.data[0].likes == 0) {
+        if (this.state.data[0].likes === 0) {
             let data = this.state.data;
             data.likes = 1;
             this.setState({data: data});
