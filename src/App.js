@@ -28,7 +28,7 @@ function App() {
         <Router>
             {/*A navbar with functional links*/}
             <nav className="navbar" id={"navbar"}>
-                <img src={Logo} id="logo"/>
+                <img src={Logo} id="logo" alt={'none'}/>
                 <h1>Galeria memów</h1>
                 <div id={"links"}>
                     <Link to={"/"}>Strona domowa</Link>

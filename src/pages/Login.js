@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useState} from 'react';
 import {Button, Form} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import "../form.css";
@@ -17,6 +17,7 @@ class Login extends Component {
 
         this.handleChangeEmail = this.handleChangeEmail.bind(this);
         this.handleChangePassword = this.handleChangePassword.bind(this);
+        this.handleLogin = this.handleLogin.bind(this);
     }
 
     handleChangeEmail =(event)=> {
@@ -27,8 +28,8 @@ class Login extends Component {
         this.setState({password: event.target.value});
     }
 
-     handleLogin =(event)=> {
-        let result = fetch('https://s401454.labagh.pl/users/add', {
+    async handleLogin() {
+        let response = await fetch('https://s401454.labagh.pl/users/add', {
             method: 'POST',
             body: JSON.stringify({
                 email: this.state.email,
@@ -38,24 +39,23 @@ class Login extends Component {
                 "Content-Type": "application/json",
                 "Accept": "*/*"
             }
-        }).then(response => response.json())
-            .then(data => {
-                this.setState({isLoaded: true});
-                this.setState({data: data});
-            });
+        });
 
-        if(this.state.data[0] != undefined) {
+        const data = await response.json();
+        this.setState({data: data});
+        this.setState({isLoaded: true});
+
+        if(this.state.data[0] !== undefined) {
             localStorage.setItem('logged',true);
             localStorage.setItem('data',this.state.data[0]);
         }
+        console.log(localStorage.getItem('logged'));
         console.log(this.state.data[0]);
-        event.preventDefault();
-        window.location.reload(false);
     }
 
     render () {
         return (
-            <Form id={"login"} onSubmit={this.handleLogin}>
+            <Form id={"login"}>
                 <h3>Logowanie</h3>
                 <Form.Group controlId="formBasicEmail">
                     <Form.Label>Adres email</Form.Label>
@@ -71,7 +71,7 @@ class Login extends Component {
                 <Form.Group controlId="formBasicCheckbox">
                     <Form.Check type="checkbox" label="Zapamiętaj mnie" />
                 </Form.Group>
-                <Button variant={"primary"} type={"submit"}>Zaloguj się</Button>
+                <Button variant={"primary"} type={"button"} onClick={this.handleLogin}>Zaloguj się</Button>
             </Form>
         );
     }

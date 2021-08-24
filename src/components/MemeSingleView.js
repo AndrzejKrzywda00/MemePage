@@ -16,6 +16,9 @@ class MemeSingleView extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            myObj: null
+        }
     }
 
     render() {
