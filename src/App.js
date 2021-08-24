@@ -8,6 +8,7 @@ import AllMemes from "./pages/AllMemes";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import AddMeme from "./pages/AddMeme";
+import MemeSingleView from "./components/MemeSingleView";
 
 /*
     DO ZROBIENIE JESZCZE
@@ -22,6 +23,7 @@ import AddMeme from "./pages/AddMeme";
 
 function App() {
     localStorage.setItem('logged',false);
+    localStorage.setItem('data',{});
     return (
     <Layout>
         <Router>
@@ -54,6 +56,9 @@ function App() {
                 </Route>
                 <Route path={"/users/register"}>
                     <Register/>
+                </Route>
+                <Route path={"/single-meme"}>
+                    <MemeSingleView/>
                 </Route>
                 <Route path={"/"}>
                     <Main path/>

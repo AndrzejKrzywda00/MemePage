@@ -1,0 +1,14 @@
+#add-meme {
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-width: 1px;
+    border-radius: 8px;
+    border-style: solid;
+    align-items: center;
+    background: radial-gradient(circle,rgb(50, 240, 79),rgb(22, 199, 49));
+}
+
+#add-meme-btn {
+    background: black;
+}

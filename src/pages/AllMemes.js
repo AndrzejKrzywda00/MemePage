@@ -1,6 +1,7 @@
 import React from "react";
 import '../styles/AllMemes.css';
 import {ListGroup, ListGroupItem, Button} from "react-bootstrap";
+import {Redirect} from "react-router-dom";
 
 class AllMemes extends React.Component {
 
@@ -32,6 +33,7 @@ class AllMemes extends React.Component {
         // so -> memes(id), comments(meme_id), images(meme_id)
         // redirect to fresh page with all information displayed
         console.log('handling to show meme with meme_id === ' + memeId);
+        this.props.history.push("/single-meme");
     }
 
     render() {

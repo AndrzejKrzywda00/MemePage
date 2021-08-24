@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {Button, Form} from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.css";
-import "../form.css";
+import {Button, Form, FormControl} from "react-bootstrap";
+import {Redirect} from 'react-router-dom';
+import "../styles/addMeme.css";
 
 class AddMeme extends Component {
 
@@ -30,28 +30,32 @@ class AddMeme extends Component {
     }
 
     render () {
+        //console.log(localStorage.getItem('logged'));
+        if(localStorage.getItem("logged") === "false") {
+            return <Redirect to={"/users/login"}></Redirect>;
+        }
+
         return (
-            <div>
+            <div id={'add-meme'}>
                 <h2>Dodaj swojego mema</h2>
                 <Form>
                     <Form.Group>
-                        <label>Tytuł</label>
-                        <input name={"text"} required={true}/>
+                        <Form.Label>Tytuł</Form.Label>
+                        <FormControl name={"text"} required={true}/>
                     </Form.Group>
                     <Form.Group>
-                        <label>Wyjaśnienie mema</label>
-                        <input name={"text-multiline"} required={true}/>
+                        <Form.Label>Wyjaśnienie mema</Form.Label>
+                        <FormControl name={"text-multiline"} required={true}/>
                     </Form.Group>
                     <Form.Group>
-                        <label>Rok powstania</label>
-                        <input name={'text'} required={true}/>
+                        <Form.Label>Rok powstania</Form.Label>
+                        <FormControl name={'text'} required={true}/>
                     </Form.Group>
                     <Form.Group>
-                        <label>Dodaj obrazek</label>
-                        <input type={"file"} onChange={this.handleImageChange}/>
+                        <Form.Label>Dodaj obrazek (jpg,jpeg,bmp,png)</Form.Label><br></br>
+                        <FormControl type={"file"} onChange={this.handleImageChange}/>
                     </Form.Group>
-
-                    <Button onClick={this.handleSubmit}>Dodaj mema</Button>
+                    <Button onClick={this.handleSubmit} id={'add-meme-btn'}>Dodaj mema</Button>
                 </Form>
             </div>
         );
