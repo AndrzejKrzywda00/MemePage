@@ -31,7 +31,7 @@ class AddMeme extends Component {
 
     render () {
         //console.log(localStorage.getItem('logged'));
-        if(localStorage.getItem("logged") === "false") {
+        if(localStorage.getItem("logged") !== "true") {
             return <Redirect to={"/users/login"}></Redirect>;
         }
 

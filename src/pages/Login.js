@@ -50,7 +50,7 @@ class Login extends Component {
             localStorage.setItem('data',this.state.data[0]);
         }
         console.log(localStorage.getItem('logged'));
-        console.log(this.state.data[0]);
+        window.location.reload(true);
     }
 
     render () {

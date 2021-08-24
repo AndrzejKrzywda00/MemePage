@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import AddMeme from "./pages/AddMeme";
 import MemeSingleView from "./components/MemeSingleView";
+import Navbar from './containers/Navbar';
 
 /*
     DO ZROBIENIE JESZCZE
@@ -21,24 +22,10 @@ import MemeSingleView from "./components/MemeSingleView";
  */
 
 function App() {
-    localStorage.setItem('logged',false);
-    localStorage.setItem('data',{});
     return (
     <Layout>
         <Router>
-            {/*A navbar with functional links*/}
-            <nav className="navbar" id={"navbar"}>
-                <img src={Logo} id="logo" alt={'none'}/>
-                <h1>Galeria memów</h1>
-                <div id={"links"}>
-                    <Link to={"/"}>Strona domowa</Link>
-                    <Link to={"/memes/random"}>Losowy mem</Link>
-                    <Link to={"/memes"} id="meme_gallery_link">Wszystkie memy</Link>
-                    <Link to={"/users/register"}>Rejestracja</Link>
-                    <Link to={"/users/login"}>Logowanie</Link>
-                    <Link to={"/memes/add"}>Dodaj mema</Link>
-                </div>
-            </nav>
+            <Navbar/>
             {/*A <Switch> looks through its children <Route>'s and renders the first one that matches what we wanted*/}
             <Switch>
                 <Route path={"/memes/random"}>
