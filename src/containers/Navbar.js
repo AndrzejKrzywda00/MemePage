@@ -17,6 +17,9 @@ class Navbar extends React.Component {
 
     handleLogOut =(event)=> {
         localStorage.setItem('logged',undefined);
+        localStorage.setItem('nick',null);
+        localStorage.setItem('email',null);
+        localStorage.setItem('id',null);
         window.location.reload(true);
     }
 

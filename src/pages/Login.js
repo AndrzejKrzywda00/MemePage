@@ -47,9 +47,10 @@ class Login extends Component {
 
         if(this.state.data[0] !== undefined) {
             localStorage.setItem('logged',true);
-            localStorage.setItem('data',this.state.data[0]);
+            localStorage.setItem('id',this.state.data[0].id);
+            localStorage.setItem('nick',this.state.data[0].nick);
+            localStorage.setItem('email',this.state.data[0].email);
         }
-        console.log(localStorage.getItem('logged'));
         window.location.reload(true);
     }
 
