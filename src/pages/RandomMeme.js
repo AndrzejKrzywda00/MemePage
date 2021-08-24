@@ -49,7 +49,7 @@ class RandomMeme extends React.Component {
                 <h1>Losowy mem</h1>
                 {data.map(item =>(
                     <Card>
-                        <Card.Title id={"card-title"}>
+                        <Card.Title id={"card-title"} key={item.id}>
                             {item.title}
                         </Card.Title>
                         <Card.Body>

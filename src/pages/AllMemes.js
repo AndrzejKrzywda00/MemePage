@@ -27,6 +27,13 @@ class AllMemes extends React.Component {
             });
     }
 
+    handleClickMeme(memeId) {
+        // download all data by meme_id
+        // so -> memes(id), comments(meme_id), images(meme_id)
+        // redirect to fresh page with all information displayed
+        console.log('handling to show meme with meme_id === ' + memeId);
+    }
+
     render() {
         const {isLoaded, data} = this.state;
         return (
@@ -34,11 +41,11 @@ class AllMemes extends React.Component {
                     <div id={"all-memes"}>
                         <h1>Wszystkie memy</h1>
                         <ListGroup>
-                            {data.map( item => (
-                                <ListGroupItem id={"item"}>
+                            {data.map(item => (
+                                <ListGroupItem id={"item"} key={item.id}>
                                     <h4 id={"title"}>{item.title}</h4>
                                     <p id={"content"}>{item.description}</p>
-                                    <Button id={"see-meme"} size={"sm"}>Zobacz mema</Button>
+                                    <Button id={"see-meme"} size={"sm"} onClick={()=>{this.handleClickMeme(item.id)}}>Zobacz mema</Button>
                                 </ListGroupItem>
                             ))}
                         </ListGroup>
