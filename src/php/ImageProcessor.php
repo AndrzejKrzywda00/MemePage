@@ -108,10 +108,12 @@ class ImageProcessor
                 }
             }
             if(($this->fileExtension == "jpg") || ($this->fileExtension == "jpeg") || ($this->fileExtension == "png") || ($this->fileExtension == "bmp")) {
-                $imageFound = $this->imageGateway->find($this->name);
+                $input['uri'] = $this->name;
+                $input['meme_id'] = $this->memeId;
+                $imageFound = $this->imageGateway->findDuplicate($input);
                 if(!$imageFound) {
                     if(move_uploaded_file($this->tmp_name, $path . $this->name)) {
-                        $data['name'] = $this->name;
+                        $data['uri'] = $this->name;
                         $data['meme_id'] = $this->memeId;
                         $this->imageGateway->insert($data);
                         return true;

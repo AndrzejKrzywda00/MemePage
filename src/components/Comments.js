@@ -14,7 +14,7 @@ class Comments extends React.Component{
     }
 
     async componentDidMount() {
-        await fetch('https://s108.labagh.pl/comments/' + this.state.memeId,
+        await fetch('https://s401454.labagh.pl/comments/' + this.state.memeId,
             {
                 Method: "GET",
                 headers: new Headers({
