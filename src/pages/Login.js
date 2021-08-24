@@ -50,6 +50,7 @@ class Login extends Component {
         }
         console.log(this.state.data[0]);
         event.preventDefault();
+        window.location.reload(false);
     }
 
     render () {

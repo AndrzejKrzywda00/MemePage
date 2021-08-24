@@ -12,8 +12,7 @@ import MemeSingleView from "./components/MemeSingleView";
 
 /*
     DO ZROBIENIE JESZCZE
-    + mechanizm weryfikacji użytkownika - logowanie
-    + przechowywanie informacji czy użytkownik jest zalogowany i wyrzucanie odpowiedniego wyglądu
+    + mechanizm weryfikacji użytkownika - logowanie - dodać wylogowywanie + żeby działało solidnie
     + cały komponent bloku komentarzy, pojedycznego komenatarza i pobieranie danych z API do niego
     + cały wygląd pojedynczego mema - duży
     + handling klikania w przycisk żeby otworzyć mema w liście wszystkich memów
