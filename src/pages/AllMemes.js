@@ -1,7 +1,7 @@
 import React from "react";
 import '../styles/AllMemes.css';
 import {ListGroup, ListGroupItem, Button} from "react-bootstrap";
-import {Redirect} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 
 class AllMemes extends React.Component {
 
@@ -29,10 +29,8 @@ class AllMemes extends React.Component {
     }
 
     handleClickMeme(memeId) {
-        // download all data by meme_id
-        // so -> memes(id), comments(meme_id), images(meme_id)
-        // redirect to fresh page with all information displayed
-        console.log('handling to show meme with meme_id === ' + memeId);
+        localStorage.setItem('meme_id',memeId);
+        //console.log('handling to show meme with meme_id === ' + memeId);
         this.props.history.push("/single-meme");
     }
 
@@ -59,4 +57,4 @@ class AllMemes extends React.Component {
     }
 }
 
-export default AllMemes;
+export default withRouter(AllMemes);

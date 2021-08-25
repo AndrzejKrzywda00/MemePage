@@ -8,8 +8,8 @@ class Comments extends React.Component{
         super(props);
         this.state = {
             isLoaded: false,
-            data: [],
-            memeId: props.memeId
+            meme_id: localStorage.getItem('meme_id');
+            data: []
         }
     }
 
@@ -35,7 +35,7 @@ class Comments extends React.Component{
                 <div id={"all-comments"}>
                     <h1>Komentarze</h1>
                     <ListGroup>
-                        {data.map( item => (
+                        {data.map(item => (
                             <ListGroupItem id={"comment"}>
                                 <h4 id={"author"}>{item.author_id} : {item.added_at}</h4>
                                 <p id={"content"}>{item.content}</p>

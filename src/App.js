@@ -1,14 +1,13 @@
 import './App.css';
 import Layout from "./meta/Layout";
-import Logo from "./img/meme_page_logo.png";
-import {BrowserRouter as Router, Link, Route, Switch} from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Main from "./pages/Main";
 import RandomMeme from "./pages/RandomMeme";
 import AllMemes from "./pages/AllMemes";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import AddMeme from "./pages/AddMeme";
-import MemeSingleView from "./components/MemeSingleView";
+import Meme from "./components/Meme";
 import Navbar from './containers/Navbar';
 
 /*
@@ -43,7 +42,7 @@ function App() {
                     <Register/>
                 </Route>
                 <Route path={"/single-meme"}>
-                    <MemeSingleView/>
+                    <Meme/>
                 </Route>
                 <Route path={"/"}>
                     <Main path/>

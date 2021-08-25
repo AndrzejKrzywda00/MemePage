@@ -7,10 +7,12 @@ class CommentsController
     private $requestMethod;
     private $commentsGateway;
     private $problemReason;
+    private $memeId;
 
-    public function __construct($db, $requestMethod)
+    public function __construct($db, $requestMethod, $memeId)
     {
         $this->requestMethod = $requestMethod;
+        $this->memeId = $memeId;
         $this->commentsGateway = new CommentsGateway($db);
     }
 
@@ -41,13 +43,7 @@ class CommentsController
 
     private function getCommentsFromMeme(): array
     {
-        $input = (array) json_decode(file_get_contents("php://input"), TRUE);
-
-        if(!$this->validateGetComments($input)) {
-            return $this->unprocessableEntityResponse();
-        }
-        $memeId = $input['meme_id'];
-        $result = $this->commentsGateway->findAll($memeId);
+        $result = $this->commentsGateway->findAll($this->memeId);
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
         $response['body'] = json_encode($result);
         return $response;
@@ -111,15 +107,6 @@ class CommentsController
         $response['status_code_header'] = 'HTTP/1.1 404 Not Found';
         $response['body'] = null;
         return $response;
-    }
-
-    private function validateGetComments($input): bool
-    {
-        if(!isset($input['meme_id'])) {
-            $this->problemReason = 'no_meme_id';
-            return false;
-        }
-        return true;
     }
 
     private function validateInsertComment(array $input): bool

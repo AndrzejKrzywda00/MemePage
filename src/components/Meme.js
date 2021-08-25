@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
+import MemeView from "./MemeView";
+import AddComment from "./AddComment";
+import Comments from "./Comments";
 
-class MemeSingleView extends Component {
+class Meme extends Component {
 
     /*
     On top goes single Meme
@@ -17,18 +20,20 @@ class MemeSingleView extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            myObj: null
+            meme_id: localStorage.getItem('meme_id')
         }
     }
 
     render() {
         return (
             <div>
-                <h1>Tu będzie pojedynczy mem</h1>
+                <MemeView/>
+                <Comments/>
+                <AddComment/>
             </div>
         );
     }
 
 }
 
-export default MemeSingleView;
+export default Meme;

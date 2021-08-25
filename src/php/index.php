@@ -54,7 +54,11 @@
             $controller->processRequest();
             break;
         case 'comments':
-            $controller = new CommentsController($dbConnection, $requestMethod);
+            $memeId = null;
+            if(isset($uri[2]) and is_numeric($uri[2])) {
+                $memeId = $uri[2];
+            }
+            $controller = new CommentsController($dbConnection, $requestMethod, $memeId);
             $controller->processRequest();
             break;
         case 'images':

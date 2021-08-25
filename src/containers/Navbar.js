@@ -1,19 +1,9 @@
 import Logo from '../img/meme_page_logo.png';
-import Register from "../pages/Register";
-import RandomMeme from "../pages/RandomMeme";
-import Main from "../pages/Main";
-import AllMemes from "../pages/AllMemes";
-import Login from "../pages/Login";
-import {BrowserRouter as Router, Link} from "react-router-dom";
+import {Link} from "react-router-dom";
 import React from 'react';
 import {Button} from "react-bootstrap";
 
 class Navbar extends React.Component {
-
-
-    constructor(props) {
-        super(props);
-    }
 
     handleLogOut =(event)=> {
         localStorage.setItem('logged',undefined);
