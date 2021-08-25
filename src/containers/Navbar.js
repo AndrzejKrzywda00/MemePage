@@ -23,8 +23,8 @@ class Navbar extends React.Component {
                         <Link to={"/"}>Strona domowa</Link>
                         <Link to={"/memes/random"}>Losowy mem</Link>
                         <Link to={"/memes"} id="meme_gallery_link">Wszystkie memy</Link>
-                        <Link to={"/users/register"}>Rejestracja</Link>
                         <Link to={"/memes/add"}>Dodaj mema</Link>
+                        <Link to={"/users/register"}>Rejestracja</Link>
                         <Button id={'logout'} onClick={this.handleLogOut}>Wyloguj</Button>
                     </div>
                 </nav>
