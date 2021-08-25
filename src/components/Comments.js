@@ -14,6 +14,7 @@ class Comments extends React.Component{
     }
 
     async componentDidMount() {
+
         await fetch('https://s401454.labagh.pl/comments/' + this.state.meme_id,
             {
                 Method: "GET",
@@ -26,6 +27,7 @@ class Comments extends React.Component{
                 this.setState({isLoaded: true});
                 this.setState({data: data});
             });
+
     }
 
     render() {
@@ -33,11 +35,11 @@ class Comments extends React.Component{
         return (
             isLoaded ?
                 <div id={"all-comments"}>
-                    <h1>Komentarze</h1>
+                    <h1 id={'comments-title'}>Komentarze</h1>
                     <ListGroup>
                         {data.map(item => (
                             <ListGroupItem id={"comment"}>
-                                <h4 id={"author"}>{item.author_id} : {item.added_at}</h4>
+                                <h6 id={"author"}>{item.author_id} o {item.added_at} pisze:</h6>
                                 <p id={"content"}>{item.content}</p>
                             </ListGroupItem>
                         ))}

@@ -1,7 +1,11 @@
 #comment {
     background: forestgreen;
     color: white;
-    border-radius: 12px;
+    border-radius: 15px;
     padding: 5px;
-    margin: 5px;
+    margin: 10px;
+}
+
+#author {
+    font-family: Calibri, serif;
 }
