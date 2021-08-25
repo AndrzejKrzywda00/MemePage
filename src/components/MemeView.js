@@ -11,7 +11,7 @@ class MemeView extends Component {
             imageIsLoaded: false,
             meme_id: localStorage.getItem('meme_id'),
             meme_data: [],
-            images: []
+            image: []
         }
     }
 
@@ -37,10 +37,10 @@ class MemeView extends Component {
                     Accept: "*/*"
                 }),
             })
-            .then(res => res.json())
+            .then(response => response.blob())
             .then(
                 (result) => {
-                    this.setState({images: result});
+                    this.setState({image: URL.createObjectURL(result)});
                     this.setState({imageIsLoaded: true});
                 }
             );
@@ -48,11 +48,14 @@ class MemeView extends Component {
     }
 
     render() {
-        const {memeIsLoaded, imageIsLoaded, meme_data} = this.state;
+        const {memeIsLoaded, meme_data, imageIsLoaded, image} = this.state;
 
         return (
-            memeIsLoaded ?
+            memeIsLoaded && imageIsLoaded ?
             <div>
+                <div id={'img-div'}>
+                    <img src={image} alt={''} id={'head-img'} className={'center'}/>
+                </div>
                 <h1 id={'meme-title'}>{meme_data.title}</h1>
                 <h3 id={'meme-description'}>{meme_data.description}</h3>
                 <div>
@@ -68,7 +71,6 @@ class MemeView extends Component {
                     <p>Autor wątku: {meme_data.added_by}</p>
 
                 </div>
-
             </div>
                 :
                 <p>Loading...</p>

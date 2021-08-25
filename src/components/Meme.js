@@ -16,7 +16,6 @@ class Meme extends Component {
     render() {
         return (
             <div>
-                <Gallery/>
                 <MemeView/>
                 <Comments/>
                 <AddComment/>
