@@ -8,13 +8,13 @@ class Comments extends React.Component{
         super(props);
         this.state = {
             isLoaded: false,
-            meme_id: localStorage.getItem('meme_id');
+            meme_id: localStorage.getItem('meme_id'),
             data: []
         }
     }
 
     async componentDidMount() {
-        await fetch('https://s401454.labagh.pl/comments/' + this.state.memeId,
+        await fetch('https://s401454.labagh.pl/comments/' + this.state.meme_id,
             {
                 Method: "GET",
                 headers: new Headers({
@@ -29,7 +29,7 @@ class Comments extends React.Component{
     }
 
     render() {
-        const {isLoaded, data} = this.state;
+        const {isLoaded, data, meme_id} = this.state;
         return (
             isLoaded ?
                 <div id={"all-comments"}>
