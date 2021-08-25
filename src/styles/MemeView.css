@@ -1,0 +1,16 @@
+#meme-title {
+    font-weight: bold;
+    text-decoration: underline;
+    text-underline: black;
+    margin-bottom: 20px;
+}
+
+#meme-description {
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+
+#year {
+    color: yellow;
+    background: black;
+}

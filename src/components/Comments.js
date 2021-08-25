@@ -35,7 +35,7 @@ class Comments extends React.Component{
         return (
             isLoaded ?
                 <div id={"all-comments"}>
-                    <h1 id={'comments-title'}>Komentarze</h1>
+                    <h1 id={'comments-title'}>Komentarze:</h1>
                     <ListGroup>
                         {data.map(item => (
                             <ListGroupItem id={"comment"}>

@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import "../styles/MemeView.css";
+import {Button} from "react-bootstrap";
 
 class MemeView extends Component {
 
@@ -25,7 +27,7 @@ class MemeView extends Component {
             .then(response => response.json())
             .then(data => {
                 this.setState({memeIsLoaded: true});
-                this.setState({meme_data: data});
+                this.setState({meme_data: data[0]});
             });
 
         await fetch('https://s401454.labagh.pl/images/' + this.state.meme_id,
@@ -46,11 +48,30 @@ class MemeView extends Component {
     }
 
     render() {
+        const {memeIsLoaded, imageIsLoaded, meme_data} = this.state;
+
         return (
-          <div>
-              <p>{this.state.imageIsLoaded}</p>
-              <p>{this.state.memeIsLoaded}</p>
-          </div>
+            memeIsLoaded ?
+            <div>
+                <h1 id={'meme-title'}>{meme_data.title}</h1>
+                <h3 id={'meme-description'}>{meme_data.description}</h3>
+                <div>
+                    <h3 id={'year'}>Rok powstania mema: {meme_data.year}</h3>
+                </div>
+                <div id={'liked-viewed'}>
+                    <h5>Obejrzano {meme_data.views} razy</h5>
+                    <h5>Pulubiono {meme_data.likes} razy</h5>
+                    <Button id={'like-meme'}>Lubię to</Button>
+                </div>
+                <div>
+                    <p>Mema dodano {meme_data.added_at}</p>
+                    <p>Autor wątku: {meme_data.added_by}</p>
+
+                </div>
+
+            </div>
+                :
+                <p>Loading...</p>
         );
     }
 
