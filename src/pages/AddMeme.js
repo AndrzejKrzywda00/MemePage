@@ -55,12 +55,15 @@ class AddMeme extends Component {
                 }
             });
 
-            const response = await request.ok;
+            const response = await request;
+
             if(response) {
                 console.log('Succesfully added!');
+                // here perform adding an image
+                let imageRequest = await fetch('https://s401454.labagh.pl/images/')
             }
             else {
-                console.log('request was not ok');
+                console.log(response);
             }
         }
         else {

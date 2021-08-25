@@ -106,13 +106,13 @@ class MemesController
     private function createMemeFromRequest(): array
     {
         $input = (array) json_decode(file_get_contents("php://input"), TRUE);
-
         if(!$this->validateMeme($input)) {
             return $this->unprocessableEntityResponse();
         }
         $this->memesGateway->insert($input);
+        $lastId = $this->memesGateway->lastInsertId();
         $response['status_code_header'] = 'HTTP/1.1 201 Created';
-        $response['body'] = null;
+        $response['body'] = json_encode($lastId);
         return $response;
     }
 

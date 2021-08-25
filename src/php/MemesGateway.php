@@ -123,4 +123,15 @@ class MemesGateway
             exit($e->getMessage());
         }
     }
+
+    public function lastInsertId()
+    {
+        $stmt = "SELECT MAX(id) FROM memes";
+        try {
+            $stmt = $this->db->query($stmt);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            return null;
+        }
+    }
 }
