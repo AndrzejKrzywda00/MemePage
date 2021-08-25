@@ -45,7 +45,7 @@ class MemesGateway
 
     public function insert(Array $input)
     {
-        $stmt = "INSERT INTO memes (title, description, year, added_at, views, likes, added_by) VALUES (:title, :description, :year, NOW(), 1, 0, 0, :added_by)";
+        $stmt = "INSERT INTO memes (title, description, year, added_at, views, likes, added_by) VALUES (:title, :description, :year, NOW(), 1, 0, :added_by)";
 
         try {
             $stmt = $this->db->prepare($stmt);
@@ -53,7 +53,6 @@ class MemesGateway
                 'title' => $input['title'],
                 'description' => $input['description'],
                 'year' => $input['year'],
-                'photo_link' => $input['photo_link'],
                 'added_by' => $input['added_by']
             ));
             return $stmt->rowCount();
