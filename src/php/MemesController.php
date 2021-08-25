@@ -42,6 +42,9 @@ class MemesController
             case 'DELETE':
                 $response = $this->deleteMeme($this->memeId);
                 break;
+            case 'OPTIONS':
+                $response['status_code_header'] = 'HTTP/1.1 200 OK';
+                break;
             default:
                 $response = $this->notFoundResponse();
                 break;
