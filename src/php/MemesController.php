@@ -112,7 +112,7 @@ class MemesController
         $this->memesGateway->insert($input);
         $lastId = $this->memesGateway->lastInsertId();
         $response['status_code_header'] = 'HTTP/1.1 201 Created';
-        $returnLastId = $lastId['MAX(id)'];
+        $returnLastId = $lastId[0]['MAX(id)'];
         $returnarray = ['last_id' => $returnLastId];
         $response['body'] = json_encode($returnarray);
         return $response;

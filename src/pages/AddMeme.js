@@ -66,7 +66,7 @@ class AddMeme extends Component {
                         file: this.state.selectedFile
                     },
                     headers: {
-                        "Content-Type": "Multipart Form",
+                        "Content-Type": "multipart/form-data",
                         "Accept": "*/*"
                     }
                 });

@@ -84,7 +84,11 @@ class ImageProcessor
             }
         }
 
-        if($this->requestMethod != 'POST' && $this->requestMethod != 'DELETE' && $this->requestMethod != 'GET') {
+        if($this->requestMethod == "OPTIONS") {
+            $response['status_code_header'] = 'HTTP/1.1 200 OK';
+        }
+
+        if($this->requestMethod != 'POST' && $this->requestMethod != 'DELETE' && $this->requestMethod != 'GET' && $this->requestMethod != "OPTIONS") {
             $response = $this->methodNotAllowed();
         }
 
