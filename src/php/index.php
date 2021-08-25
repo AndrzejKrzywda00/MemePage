@@ -62,10 +62,11 @@
             $controller->processRequest();
             break;
         case 'images':
-            $imageId = null;
+            $memeId = null;
             if(isset($uri[2])) {
-                $imageId = $uri[2];
+                $memeId = $uri[2];
             }
-            $handler = new ImageProcessor($dbConnection, $requestMethod, $imageId);
+            $handler = new ImageProcessor($dbConnection, $requestMethod, $memeId);
             $handler->process();
+            break;
     }

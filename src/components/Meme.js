@@ -5,18 +5,6 @@ import Comments from "./Comments";
 
 class Meme extends Component {
 
-    /*
-    On top goes single Meme
-    ---
-    Comments
-    {comment
-    comment
-    comment}
-    Comments
-    ---
-    add Comment
-     */
-
     constructor(props) {
         super(props);
         this.state = {

@@ -71,10 +71,11 @@ class ImageProcessor
             }
         }
 
+        // TODO -- rebuild this to work for more than one file
         if($this->requestMethod == 'GET') {
             if(is_numeric($this->memeId)) {
-                if($this->imageGateway->find($memeId)) {
-                    $name = $this->imageGateway->findName($memeId);
+                if($this->imageGateway->find($this->memeId)) {
+                    $name = $this->imageGateway->findNames($this->memeId);
                     $path = 'Uploads/images/' . $name;
                     header('Content-Type: image/png');
                     header('Content-Disposition: inline; filename="' . $name . '"');

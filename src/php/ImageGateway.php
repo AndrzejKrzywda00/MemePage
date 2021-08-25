@@ -36,6 +36,18 @@ class ImageGateway
         }
     }
 
+    public function findNames($meme_id)
+    {
+        $stmt = "SELECT name FROM images WHERE meme_id = :meme_id";
+        try {
+            $stmt = $this->db->prepare($stmt);
+            $stmt->execute(array('meme_id' => $meme_id));
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
     public function insert($input)
     {
         $stmt = "INSERT INTO images (meme_id, uri) VALUES (:meme_id, :uri)";
