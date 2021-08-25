@@ -1,6 +1,7 @@
 <?php
 
 include("MemesGateway.php");
+
 class MemesController
 {
     private $requestMethod;
@@ -8,6 +9,7 @@ class MemesController
     private $problemReason;
 
     private $memesGateway;
+    private $usersGateway;
 
     public function __construct($db, $requestMethod, $memeId)
     {
@@ -15,6 +17,7 @@ class MemesController
         $this->memeId = $memeId;
 
         $this->memesGateway = new MemesGateway($db);
+        $this->usersGateway = new UsersGateway($db);
     }
 
     public function processRequest()
@@ -150,6 +153,12 @@ class MemesController
         }
         if(!isset($input['added_by'])) {
             $this->problemReason = 'no_author_provided';
+        }
+        if(isset($input['added_by'])) {
+            if(!$this->usersGateway->find($input['added_by'])) {
+                $this->problemReason = 'author_doesnt_exist_in_db';
+                return false;
+            }
         }
         return true;
     }
