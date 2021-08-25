@@ -4,8 +4,7 @@ import ImageGallery from "react-image-gallery";
 
 const images = [
     {
-        original: 'meme_page_logo.png',
-        thumbnail: 'meme_thumbnail.png'
+        original: 'https://www.youtube.com/watch?v=aMMIIpbPfPk&ab_channel=KAISERVS',
     }
 ];
 

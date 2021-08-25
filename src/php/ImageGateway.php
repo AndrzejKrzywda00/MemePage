@@ -36,15 +36,15 @@ class ImageGateway
         }
     }
 
-    public function findNames($meme_id)
+    public function findName($meme_id)
     {
-        $stmt = "SELECT name FROM images WHERE meme_id = :meme_id";
+        $stmt = "SELECT uri FROM images WHERE meme_id = :meme_id ORDER BY RAND() LIMIT 1";
         try {
             $stmt = $this->db->prepare($stmt);
             $stmt->execute(array('meme_id' => $meme_id));
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
-            return false;
+            exit($e->getMessage());
         }
     }
 

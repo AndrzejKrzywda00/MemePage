@@ -71,14 +71,14 @@ class ImageProcessor
             }
         }
 
-        // TODO -- rebuild this to work for more than one file
         if($this->requestMethod == 'GET') {
             if(is_numeric($this->memeId)) {
                 if($this->imageGateway->find($this->memeId)) {
-                    $name = $this->imageGateway->findNames($this->memeId);
-                    $path = 'Uploads/images/' . $name;
+                    $name = $this->imageGateway->findName($this->memeId);
+                    $path = 'Uploads/images/' . $name[0]['uri'];
                     header('Content-Type: image/png');
-                    header('Content-Disposition: inline; filename="' . $name . '"');
+                    header('Content-Disposition: inline; filename="' . $name[0]['uri'] . '"');
+                    $response['status_code_header'] = 'HTTP/1.1 200 OK';
                     readfile($path);
                 }
             }
