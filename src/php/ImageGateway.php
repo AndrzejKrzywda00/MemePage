@@ -36,9 +36,21 @@ class ImageGateway
         }
     }
 
-    public function findName($meme_id)
+    public function findOneNameRandom($meme_id)
     {
         $stmt = "SELECT uri FROM images WHERE meme_id = :meme_id ORDER BY RAND() LIMIT 1";
+        try {
+            $stmt = $this->db->prepare($stmt);
+            $stmt->execute(array('meme_id' => $meme_id));
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            exit($e->getMessage());
+        }
+    }
+
+    public function findNames($meme_id)
+    {
+        $stmt = "SELECT uri FROM images WHERE meme_id = :meme_id";
         try {
             $stmt = $this->db->prepare($stmt);
             $stmt->execute(array('meme_id' => $meme_id));
@@ -62,12 +74,12 @@ class ImageGateway
         }
     }
 
-    public function delete($meme_id)
+    public function delete($id)
     {
-        $stmt = "DELETE FROM images WHERE meme_id = :meme_id";
+        $stmt = "DELETE FROM images WHERE id = :id";
         try {
             $stmt = $this->db->prepare($stmt);
-            $stmt->execute(array('meme_id' => $meme_id));
+            $stmt->execute(array('id' => $id));
             return $stmt->rowCount();
         } catch (PDOException $e) {
             return false;

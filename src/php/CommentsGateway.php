@@ -77,4 +77,16 @@ class CommentsGateway
         }
     }
 
+    public function deleteByMemeId($meme_id)
+    {
+        $stmt = "DELETE FROM comments WHERE meme_id = :meme_id";
+        try {
+            $stmt = $this->db->prepare($stmt);
+            $stmt->execute(array('meme_id' => $meme_id));
+            return $stmt->rowCount();
+        } catch (PDOException $e) {
+            exit($e->getMessage());
+        }
+    }
+
 }

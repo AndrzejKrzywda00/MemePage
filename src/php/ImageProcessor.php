@@ -46,35 +46,22 @@ class ImageProcessor
 
         // TODO -- make this work
         if($this->requestMethod == 'DELETE') {
-            if($name = $this->getFileName()) {
-                if($this->imageGateway->find($name)) {
-                    $filePointer = 'Uploads/images/' . $this->getFileName();
-                    if(file_exists($filePointer)) {
-                        $DBdelete = $this->delete();
-                        $fileDelete = unlink($filePointer);
-                        $response['status_code_header'] = 'HTTP/1.1 200 OK';
-                        $response['body'] = null;
-                    }
-                    else {
-                        $this->reasonProblem = 'no_file_in_system';
-                        return $this->unprocessableEntityResponse();
-                    }
-                }
-                else {
-                    $this->reasonProblem = 'no_file_in_db';
-                    return $this->unprocessableEntityResponse();
+            $fileNames = $this->imageGateway->findName($this->memeId);
+            foreach($fileNames as $fileName) {
+                $filePointer = 'Uploads/images' . $fileName;
+                if(file_exists($filePointer)) {
+                    unlink($filePointer);
                 }
             }
-            else {
-                $this->reasonProblem = 'no_file_name';
-                return $this->unprocessableEntityResponse();
-            }
+            $response['status_code_header'] = 'HTTP/1.1 200 OK';
+            $response['body'] = null;
+            $this->imageGateway->deleteAllByMeme($this->memeId);
         }
 
         if($this->requestMethod == 'GET') {
             if(is_numeric($this->memeId)) {
                 if($this->imageGateway->find($this->memeId)) {
-                    $name = $this->imageGateway->findName($this->memeId);
+                    $name = $this->imageGateway->findOneNameRandom($this->memeId);
                     $path = 'Uploads/images/' . $name[0]['uri'];
                     header('Content-Type: image/png');
                     header('Content-Disposition: inline; filename="' . $name[0]['uri'] . '"');
@@ -146,14 +133,6 @@ class ImageProcessor
         }
         $this->reasonProblem = 'no_file_name';
         return false;
-    }
-
-    private function getFileName()
-    {
-        $input = json_decode(file_get_contents("php://input"), TRUE);
-        if(isset($input['name'])) {
-            return $input['name'];
-        }
     }
 
     private function unprocessableEntityResponse(): array

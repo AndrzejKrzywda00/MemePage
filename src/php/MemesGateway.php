@@ -114,7 +114,7 @@ class MemesGateway
 
     public function delete($id)
     {
-        $stmt = "DELETE FROM memes WHERE id = :id;";
+        $stmt = "DELETE FROM memes WHERE id = :id";
         try {
             $stmt = $this->db->prepare($stmt);
             $stmt->execute(array('id' => $id));

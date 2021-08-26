@@ -67,16 +67,7 @@ class CommentsController
 
     private function deleteComment(): array
     {
-        $input = (array) json_decode(file_get_contents("php://input"), TRUE);
-        if(!$this->validateDeleteComment($input)) {
-            return $this->unprocessableEntityResponse();
-        }
-        $commentId = $input['id'];
-        $result = $this->commentsGateway->find($commentId);
-        if(!$result) {
-            return $this->notFoundResponse();
-        }
-        $this->commentsGateway->delete($commentId);
+        $this->commentsGateway->deleteByMemeId($this->memeId);
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
         $response['body'] = null;
         return $response;
@@ -141,15 +132,6 @@ class CommentsController
         }
         if(isset($input['content']) && (mb_strlen($input['content']) < 25 || mb_strlen($input['content']) > 500)) {
             $this->problemReason = 'content_wrong_length';
-            return false;
-        }
-        return true;
-    }
-
-    private function validateDeleteComment($input)
-    {
-        if(!isset($input['id'])) {
-            $this->problemReason = 'no_delete_id_provided';
             return false;
         }
         return true;
