@@ -1,6 +1,7 @@
 import React from "react";
 import {ListGroup, ListGroupItem} from "react-bootstrap";
 import '../styles/Comments.css';
+import {Comment} from "../containers/SingleComment";
 
 class Comments extends React.Component{
 
@@ -9,6 +10,7 @@ class Comments extends React.Component{
         this.state = {
             isLoaded: false,
             meme_id: localStorage.getItem('meme_id'),
+            user_id: localStorage.getItem('id'),
             data: []
         }
     }
@@ -41,10 +43,7 @@ class Comments extends React.Component{
                     <h1 id={'comments-title'}>Komentarze:</h1>
                     <ListGroup>
                         {data.map(item => (
-                            <ListGroupItem id={"comment"} key={item.id}>
-                                <h6 id={"author"}>{item.author_id} o {item.added_at} pisze:</h6>
-                                <p id={"content"}>{item.content}</p>
-                            </ListGroupItem>
+                            <Comment userId={this.state.user_id} addedAt={item.added_at} authorId={item.author_id} content={item.content} Id={item.id}/>
                         ))}
                     </ListGroup>
                     <br/>

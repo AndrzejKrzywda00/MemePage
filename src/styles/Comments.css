@@ -1,6 +1,14 @@
-#comment {
+#comment--mine {
     background: linear-gradient(forestgreen,rgb(40, 184, 24));
     color: white;
+    border-radius: 15px;
+    padding: 5px;
+    margin: 10px;
+}
+
+#comment--somebody {
+    background: linear-gradient(rgb(217, 216, 215),rgb(242, 241, 240));
+    color: black;
     border-radius: 15px;
     padding: 5px;
     margin: 10px;

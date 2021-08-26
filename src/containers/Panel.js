@@ -38,6 +38,7 @@ class Panel extends Component {
         const responseOk = await request.ok;
 
         if(responseOk) {
+            await new Promise( r => setTimeout(r,200));
             window.location.reload(true);
         }
 
