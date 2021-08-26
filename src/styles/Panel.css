@@ -1,0 +1,29 @@
+#edit {
+    background: yellowgreen;
+    margin: 10px;
+    border: none;
+    color: black;
+    box-shadow: none;
+}
+
+#delete {
+    background: red;
+    margin: 10px;
+    border: none;
+    box-shadow: none;
+}
+
+#add-comment {
+    background: cadetblue;
+    margin: 10px;
+    border: none;
+    box-shadow: none;
+}
+
+#panel {
+    border: 1px solid gray;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

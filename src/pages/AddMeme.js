@@ -99,7 +99,7 @@ class AddMeme extends Component {
                     <Form className={'submit'} encType={'multipart/form-data'}>
                         <Form.Group>
                             <Form.Label id={'formlabel'}>Tytuł</Form.Label>
-                            <FormControl name={"text"} required={true} onChange={this.handleTitleChange} autocomplete={'off'}/>
+                            <FormControl name={"text"} required={true} onChange={this.handleTitleChange} autoComplete={'off'}/>
                         </Form.Group>
                         <Form.Group>
                             <Form.Label id={'formlabel'}>Wyjaśnienie mema</Form.Label>

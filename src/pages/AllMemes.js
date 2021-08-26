@@ -30,7 +30,6 @@ class AllMemes extends React.Component {
 
     handleClickMeme(memeId) {
         localStorage.setItem('meme_id',memeId);
-        //console.log('handling to show meme with meme_id === ' + memeId);
         this.props.history.push("/single-meme");
     }
 

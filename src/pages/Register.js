@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles/Register.css";
 import {Button, Form, FormControl, FormLabel} from "react-bootstrap";
+import {withRouter} from "react-router-dom";
 
 class Register extends React.Component {
 
@@ -31,8 +32,8 @@ class Register extends React.Component {
         this.setState({password: event.target.value});
     }
 
-    handleSubmit =(event)=> {
-        let result = fetch("https://s401454.labagh.pl/users", {
+    async handleSubmit() {
+        let result = await fetch("https://s401454.labagh.pl/users", {
             method: "POST",
             body: JSON.stringify({
                 nick: this.state.nick,
@@ -44,15 +45,19 @@ class Register extends React.Component {
                 'Accept': '*/*'
             }
         });
-        console.log(result);
-        event.preventDefault();
+
+        const info = await result.ok;
+
+        if(info) {
+            this.props.history.push("/users/login");
+        }
     }
 
     render () {
         return (
             <div id={"register"}>
                 <h3>Rejestracja</h3>
-                <Form onSubmit={this.handleSubmit}>
+                <Form>
                     <Form.Group>
                         <FormLabel>Twój nick</FormLabel>
                         <FormControl type="nick" placeholder={"np. kwiatuszek123"} id={"nick-input"} onChange={this.handleChangeNick} />
@@ -65,7 +70,7 @@ class Register extends React.Component {
                         <Form.Label>Hasło</Form.Label>
                         <Form.Control type="password" placeholder="" onChange={this.handleChangePassword}/>
                     </Form.Group>
-                    <Button variant={"success"} type="submit">Zarejestruj się</Button>
+                    <Button variant={"success"} onClick={this.handleSubmit}>Zarejestruj się</Button>
                 </Form>
             </div>
         );
@@ -73,4 +78,4 @@ class Register extends React.Component {
 
 }
 
-export default Register;
+export default withRouter(Register);

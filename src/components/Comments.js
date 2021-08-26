@@ -15,6 +15,9 @@ class Comments extends React.Component{
 
     async componentDidMount() {
 
+        await new Promise( r => setTimeout(r,300));
+        this.setState({meme_id: localStorage.getItem('meme_id')});
+
         await fetch('https://s401454.labagh.pl/comments/' + this.state.meme_id,
             {
                 Method: "GET",
