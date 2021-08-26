@@ -2,6 +2,7 @@ import React from "react";
 import '../styles/AllMemes.css';
 import {ListGroup, ListGroupItem, Button} from "react-bootstrap";
 import {withRouter} from "react-router-dom";
+import ReactPaginate from 'react-paginate';
 
 class AllMemes extends React.Component {
 
@@ -48,7 +49,6 @@ class AllMemes extends React.Component {
                                 </ListGroupItem>
                             ))}
                         </ListGroup>
-                        <br/>
                     </div>
                     :
                     <p>Loading ...</p>

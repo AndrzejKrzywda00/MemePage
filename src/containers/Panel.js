@@ -79,10 +79,6 @@ class Panel extends Component {
 
         const memeResponse = await memeRequest.ok;
 
-        console.log(memeResponse);
-        console.log(commentResponse);
-        console.log(imageResponse);
-
         if(memeResponse && commentResponse && imageResponse) {
             this.props.history.push("/memes");
         }

@@ -28,6 +28,7 @@ class MemeView extends Component {
             .then(data => {
                 this.setState({memeIsLoaded: true});
                 this.setState({meme_data: data[0]});
+                localStorage.setItem('meme_owner',this.state.meme_data.id);
             });
 
         await fetch('https://s401454.labagh.pl/images/' + this.state.meme_id,
