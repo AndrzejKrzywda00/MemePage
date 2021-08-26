@@ -44,18 +44,17 @@ class ImageProcessor
             }
         }
 
-        // TODO -- make this work
         if($this->requestMethod == 'DELETE') {
-            $fileNames = $this->imageGateway->findName($this->memeId);
+            $fileNames = $this->imageGateway->findNames($this->memeId);
             foreach($fileNames as $fileName) {
                 $filePointer = 'Uploads/images' . $fileName;
                 if(file_exists($filePointer)) {
                     unlink($filePointer);
                 }
             }
+            $this->imageGateway->deleteAllByMeme($this->memeId);
             $response['status_code_header'] = 'HTTP/1.1 200 OK';
             $response['body'] = null;
-            $this->imageGateway->deleteAllByMeme($this->memeId);
         }
 
         if($this->requestMethod == 'GET') {

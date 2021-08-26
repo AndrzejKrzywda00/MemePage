@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Button, Form, FormControl} from "react-bootstrap";
 import "../styles/Panel.css";
+import {withRouter} from 'react-router-dom';
 
 class Panel extends Component {
 
@@ -46,9 +47,46 @@ class Panel extends Component {
 
     }
 
-    handleRemoveMeme() {
-        alert('Usuwasz treść z galerii');
-        // clean comments, images, memes
+    async handleRemoveMeme() {
+
+        let imageRequest = await fetch('https://s401454.labagh.pl/images/' + this.state.meme_id, {
+            method: "DELETE",
+            headers : {
+                "Content-Type": "application/json",
+                "Accept" : "*/*"
+            }
+        });
+
+        const imageResponse = await imageRequest.ok;
+
+        let commentRequest = await fetch('https://s401454.labagh.pl/comments/' + this.state.meme_id, {
+            method: "DELETE",
+            headers : {
+                "Content-Type": "application/json",
+                "Accept" : "*/*"
+            }
+        });
+
+        const commentResponse = await commentRequest.ok;
+
+        let memeRequest = await fetch('https://s401454.labagh.pl/memes/' + this.state.meme_id, {
+            method: "DELETE",
+            headers : {
+                "Content-Type": "application/json",
+                "Accept" : "*/*"
+            }
+        });
+
+        const memeResponse = await memeRequest.ok;
+
+        console.log(memeResponse);
+        console.log(commentResponse);
+        console.log(imageResponse);
+
+        if(memeResponse && commentResponse && imageResponse) {
+            this.props.history.push("/memes");
+        }
+
     }
 
     handleChangeCommentContent =(event)=> {
@@ -79,4 +117,4 @@ class Panel extends Component {
 
 }
 
-export default Panel;
+export default withRouter(Panel);

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Button, Form, FormControl} from "react-bootstrap";
-import {Redirect} from 'react-router-dom';
+import {Redirect, withRouter} from 'react-router-dom';
 import "../styles/addMeme.css";
 
 class AddMeme extends Component {
@@ -75,6 +75,7 @@ class AddMeme extends Component {
 
                 if(finishResponse) {
                     console.log('Success!');
+                    this.props.history.push("/");
                 }
             }
             else {
@@ -131,4 +132,4 @@ class AddMeme extends Component {
 
 }
 
-export default AddMeme;
+export default withRouter(AddMeme);
