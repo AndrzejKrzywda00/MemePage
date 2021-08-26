@@ -27,16 +27,16 @@ function App() {
             {/*A <Switch> looks through its children <Route>'s and renders the first one that matches what we wanted*/}
             <Switch>
                 <Route path={"/memes/random"}>
-                    <RandomMeme path/>
+                    <RandomMeme/>
                 </Route>
                 <Route path={"/memes/add"}>
                     <AddMeme/>
                 </Route>
                 <Route path={"/memes"}>
-                    <AllMemes path={"/memes"}/>
+                    <AllMemes/>
                 </Route>
                 <Route path={"/users/login"}>
-                    <Login path/>
+                    <Login/>
                 </Route>
                 <Route path={"/users/register"}>
                     <Register/>
@@ -45,7 +45,7 @@ function App() {
                     <Meme/>
                 </Route>
                 <Route path={"/"}>
-                    <Main path/>
+                    <Main/>
                 </Route>
             </Switch>
         </Router>
