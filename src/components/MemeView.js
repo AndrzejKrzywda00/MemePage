@@ -46,6 +46,8 @@ class MemeView extends Component {
                 }
             );
 
+        await fetch('https://s401454.labagh.pl/memes/')
+
     }
 
     render() {

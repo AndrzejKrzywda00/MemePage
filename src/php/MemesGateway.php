@@ -89,18 +89,6 @@ class MemesGateway
         }
     }
 
-    public function updateComments($id)
-    {
-        $stmt = "UPDATE memes SET comments = comments+1 WHERE id = :id";
-        try {
-            $stmt = $this->db->prepare($stmt);
-            $stmt->execute(array('id' => $id));
-            return $stmt->rowCount();
-        } catch (PDOException $e) {
-            exit($e->getMessage());
-        }
-    }
-
     public function updateViews($id) {
         $stmt = "UPDATE memes SET views = views+1 WHERE id = :id";
         try {

@@ -96,10 +96,22 @@ class MemesController
         }
 
         $input = (array) json_decode(file_get_contents("php://input"), TRUE);
-
-        $this->memesGateway->updateTitleAndDescription($id, $input);
-        $response['status_code_header'] = 'HTTP/1.1 200 OK';
-        $response['body'] = null;
+        if($input['update_type'] == 'likes') {
+            $this->memesGateway->updateLikes();
+            $response['status_code_header'] = 'HTTP/1.1 200 OK';
+            $response['body'] = null;
+        }
+        if($input['update_type'] == 'views') {
+            $this->memesGateway->updateViews();
+            $response['status_code_header'] = 'HTTP/1.1 200 OK';
+            $response['body'] = null;
+        }
+        if($input['update_type'] == 'general') {
+            $this->memesGateway->updateTitleAndDescription($id, $input);
+            $response['status_code_header'] = 'HTTP/1.1 200 OK';
+            $response['body'] = null;
+        }
+        
         return $response;
     }
 
