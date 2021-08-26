@@ -34,7 +34,7 @@ class MemesGateway
 
     public function findAll()
     {
-        $stmt = "SELECT * FROM memes";
+        $stmt = "SELECT * FROM memes ORDER BY likes DESC";
         try {
             $stmt = $this->db->query($stmt);
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
