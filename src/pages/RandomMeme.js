@@ -3,6 +3,7 @@ import '../styles/RandomMeme.css';
 import RandomMemeView from "../components/RandomMemeView";
 import AddComment from "../components/AddComment";
 import Comments from "../components/Comments";
+import Panel from "../containers/Panel";
 
 /***
  *
@@ -20,13 +21,26 @@ class RandomMeme extends React.Component {
     }
 
     render () {
+
+        if(localStorage.getItem('logged') !== "true") {
+            return (
+                <div>
+                    <RandomMemeView/>
+                    <Comments/>
+                    <AddComment/>
+                </div>
+            );
+        }
+
         return (
-          <div>
-              <RandomMemeView/>
-              <Comments/>
-              <AddComment/>
-          </div>
+            <div>
+                <RandomMemeView/>
+                <Comments/>
+                <AddComment/>
+                <Panel/>
+            </div>
         );
+
     }
 
 }

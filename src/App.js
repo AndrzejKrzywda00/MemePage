@@ -12,11 +12,11 @@ import Navbar from './containers/Navbar';
 
 /*
     DO ZROBIENIE JESZCZE
-    + cały komponent bloku komentarzy, pojedycznego komenatarza i pobieranie danych z API do niego
-    + cały wygląd pojedynczego mema - duży
-    + handling klikania w przycisk żeby otworzyć mema w liście wszystkich memów
-    + dodawanie swojego mema (po zalogowaniu)(react-bootstrap)
-    + usuwanie, dodawanie, modyfikowanie komentarzy po zalogowaniu
+    + pełna responsywność komentarzy
+    + modfyikowanie wstawionego mema
+    + dodawanie osobno zdjęcia przez api
+    + paginacja
+    + views, likes
  */
 
 function App() {
@@ -24,7 +24,6 @@ function App() {
     <Layout>
         <Router>
             <Navbar/>
-            {/*A <Switch> looks through its children <Route>'s and renders the first one that matches what we wanted*/}
             <Switch>
                 <Route path={"/memes/random"}>
                     <RandomMeme/>
