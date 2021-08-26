@@ -47,7 +47,8 @@ class Panel extends Component {
     }
 
     handleRemoveMeme() {
-
+        alert('Usuwasz treść z galerii');
+        // clean comments, images, memes
     }
 
     handleChangeCommentContent =(event)=> {
