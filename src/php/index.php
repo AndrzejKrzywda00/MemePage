@@ -12,6 +12,7 @@
     include("MemesController.php");
     include("CommentsController.php");
     include("ImageProcessor.php");
+    include("LikesController.php");
 
     header("Access-Control-Allow-Origin: *");
     header("Content-Type: application/json; charset=UTF-8");
@@ -22,7 +23,7 @@
     $uri = parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH);
     $uri = explode('/', $uri);
 
-    $endpoints = ['users','memes','comments','images','login'];
+    $endpoints = ['users','memes','comments','images','likes'];
 
     if(!in_array($uri[1], $endpoints)) {
         header("HTTP/1.1 404 Not Found");
@@ -68,5 +69,9 @@
             }
             $handler = new ImageProcessor($dbConnection, $requestMethod, $memeId);
             $handler->process();
+            break;
+        case 'likes':
+            $controller = new LikesController($dbConnection, $requestMethod);
+            $controller->processRequest();
             break;
     }

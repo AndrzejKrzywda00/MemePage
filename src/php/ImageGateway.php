@@ -18,7 +18,7 @@ class ImageGateway
                 'meme_id' => $input['meme_id'],
                 'uri' => $input['uri']
             ));
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $stmt-fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             return false;
         }

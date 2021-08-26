@@ -58,8 +58,6 @@ class MemeView extends Component {
             }),
         });
 
-        console.log(r);
-
     }
 
     render() {
