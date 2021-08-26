@@ -10,10 +10,6 @@ const images = [
 
 class Gallery extends Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render () {
         return (
             <div id={'gallery'}>

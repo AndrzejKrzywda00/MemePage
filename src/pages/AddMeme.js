@@ -78,16 +78,16 @@ class AddMeme extends Component {
                 }
             }
             else {
-                console.log(response);
+                console.log('Adding meme didnt work');
             }
         }
         else {
-            console.log(this.state);
+            console.log('Empty fields');
         }
     }
 
     render () {
-        //console.log(localStorage.getItem('logged'));
+
         if(localStorage.getItem("logged") !== "true") {
             return <Redirect to={"/users/login"}></Redirect>;
         }

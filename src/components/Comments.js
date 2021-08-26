@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, ListGroup, ListGroupItem} from "react-bootstrap";
+import {ListGroup, ListGroupItem} from "react-bootstrap";
 import '../styles/Comments.css';
 
 class Comments extends React.Component{
@@ -34,14 +34,14 @@ class Comments extends React.Component{
     }
 
     render() {
-        const {isLoaded, data, meme_id} = this.state;
+        const {isLoaded, data} = this.state;
         return (
             isLoaded ?
                 <div id={"all-comments"}>
                     <h1 id={'comments-title'}>Komentarze:</h1>
                     <ListGroup>
                         {data.map(item => (
-                            <ListGroupItem id={"comment"}>
+                            <ListGroupItem id={"comment"} key={item.id}>
                                 <h6 id={"author"}>{item.author_id} o {item.added_at} pisze:</h6>
                                 <p id={"content"}>{item.content}</p>
                             </ListGroupItem>
