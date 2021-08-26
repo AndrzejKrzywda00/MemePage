@@ -31,6 +31,9 @@ class CommentsController
             case 'DELETE':
                 $response = $this->deleteComment();
                 break;
+            case 'OPTIONS':
+                $response['status_code_header'] = 'HTTP/1.1 200 OK';
+                break;
             default:
                 $response = $this->notFoundResponse();
                 break;
@@ -115,7 +118,7 @@ class CommentsController
             $this->problemReason = 'no_content_provided';
             return false;
         }
-        if(isset($input['content']) && (mb_strlen($input['content']) < 25 || mb_strlen($input['content']) > 500)) {
+        if(isset($input['content']) && (mb_strlen($input['content']) < 25 || mb_strlen($input['content']) > 5000)) {
             $this->problemReason = 'content_wrong_length';
             return false;
         }
