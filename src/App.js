@@ -16,7 +16,6 @@ import Navbar from './containers/Navbar';
     + modfyikowanie wstawionego mema
     + dodawanie osobno zdjęcia przez api
     + paginacja
-    + views, likes
  */
 
 function App() {

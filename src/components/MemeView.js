@@ -84,7 +84,6 @@ class MemeView extends Component {
                 <div>
                     <p>Mema dodano {meme_data.added_at}</p>
                     <p>Autor wątku: {meme_data.added_by}</p>
-
                 </div>
             </div>
                 :
