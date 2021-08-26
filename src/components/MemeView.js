@@ -10,10 +10,12 @@ class MemeView extends Component {
             memeIsLoaded: false,
             imageIsLoaded: false,
             meme_id: localStorage.getItem('meme_id'),
+            user_id: localStorage.getItem('id'),
             meme_data: [],
             image: [],
             views: 'views'
         }
+        this.handleLike = this.handleLike.bind(this);
     }
 
     async componentDidMount() {
@@ -60,6 +62,28 @@ class MemeView extends Component {
 
     }
 
+    async handleLike() {
+        // 1. send request to make a row user - meme in `likes`
+        // 2. change button
+        // 3. change number - automatic
+        let likeRequest = await fetch('https://s401454.labagh.pl/likes',{
+            method: "POST",
+            headers: {
+                "Content-Type" : "application/json",
+                "Accept" : "*/*"
+            },
+            body: JSON.stringify({
+                meme_id: this.state.meme_id,
+                user_id: this.state.user_id
+            })
+        });
+
+        console.log(JSON.stringify({
+            meme_id: this.state.meme_id,
+            user_id: this.state.user_id}));
+
+    }
+
     render() {
         const {memeIsLoaded, meme_data, imageIsLoaded, image} = this.state;
 
@@ -77,7 +101,7 @@ class MemeView extends Component {
                 <div id={'liked-viewed'}>
                     <h5>Obejrzano {meme_data.views} razy</h5>
                     <h5>Pulubiono {meme_data.likes} razy</h5>
-                    <Button id={'like-meme'}>Lubię to</Button>
+                    <Button id={'like-meme'} onClick={this.handleLike}>Lubię to</Button>
                 </div>
                 <div>
                     <p>Mema dodano {meme_data.added_at}</p>
