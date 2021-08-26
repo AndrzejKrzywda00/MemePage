@@ -13,3 +13,18 @@
     background: black;
     outline: 0;
 }
+
+#formlabel {
+    font-weight: bold;
+}
+
+#add-image {
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-width: 1px;
+    border-radius: 8px;
+    border-style: solid;
+    align-items: center;
+    background: radial-gradient(circle,rgb(255, 255, 92),rgb(207, 197, 23));
+}

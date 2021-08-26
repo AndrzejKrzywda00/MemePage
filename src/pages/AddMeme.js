@@ -56,22 +56,23 @@ class AddMeme extends Component {
             });
 
             const response = await request.json();
+            const responseOk = await request.ok;
 
-            if(response) {
-                console.log('Succesfully added!');
-                // here perform adding an image
+            if(responseOk) {
+
+                var formData = new FormData();
+                formData.append("file",this.state.selectedFile,this.state.selectedFile.name);
+
                 let imageRequest = await fetch('https://s401454.labagh.pl/images/' + response.last_id, {
                     method: "POST",
-                    body: {
-                        file: this.state.selectedFile
-                    },
+                    body: formData,
                     headers: {
-                        "Content-Type": "multipart/form-data",
                         "Accept": "*/*"
                     }
                 });
 
                 const finishResponse = await imageRequest.ok;
+
                 if(finishResponse) {
                     console.log('Success!');
                 }
@@ -95,28 +96,32 @@ class AddMeme extends Component {
             <div>
                 <div id={'add-meme'}>
                     <h2>Dodaj swojego mema</h2>
-                    <Form>
+                    <Form className={'submit'} encType={'multipart/form-data'}>
                         <Form.Group>
-                            <Form.Label>Tytuł</Form.Label>
-                            <FormControl name={"text"} required={true} onChange={this.handleTitleChange}/>
+                            <Form.Label id={'formlabel'}>Tytuł</Form.Label>
+                            <FormControl name={"text"} required={true} onChange={this.handleTitleChange} autocomplete={'off'}/>
                         </Form.Group>
                         <Form.Group>
-                            <Form.Label>Wyjaśnienie mema</Form.Label>
+                            <Form.Label id={'formlabel'}>Wyjaśnienie mema</Form.Label>
                             <FormControl name={"text"} as={'textarea'} rows={10} required={true} onChange={this.handleDescChange}/>
                         </Form.Group>
                         <Form.Group>
-                            <Form.Label>Rok powstania</Form.Label>
+                            <Form.Label id={'formlabel'}>Rok powstania</Form.Label>
                             <input type={'number'} min={'0'} value={'2015'} step={'1'} required={true} onChange={this.handleYearChange}/>
                         </Form.Group>
-                        <Form.Group>
-                            <Form.Label>Dodaj obrazek (jpg,jpeg,bmp,png)</Form.Label><br></br>
-                            <FormControl type={"file"} onChange={this.handleImageChange}/>
+                        <Form.Group controlId="formFile">
+                            <Form.Label id={'formlabel'}>Dodaj obrazek (jpg,jpeg,bmp,png)</Form.Label><br></br>
+                            <Form.Control type={"file"} onChange={this.handleImageChange}/>
                         </Form.Group>
                         <Button onClick={this.handleSubmit} id={'add-meme-btn'}>Dodaj mema</Button>
                     </Form>
                 </div>
                 <div id={'add-image'}>
+                    <h2>Dodaj zdjęcie osobno</h2>
                     <Form>
+                        <p>Tutaj lista wszystkich memów</p>
+                        <p>tutaj miejsce na upload</p>
+                        <Button id={'add-meme-btn'}>Dodaj zdjęcie</Button>
                     </Form>
                 </div>
             </div>

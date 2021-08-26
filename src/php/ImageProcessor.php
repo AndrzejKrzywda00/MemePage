@@ -102,16 +102,12 @@ class ImageProcessor
     {
         if(isset($this->name)) {
             $path = 'Uploads/images/';
-            if(empty($this->name)) {
-                $this->reasonProblem = 'filename_is_null';
+
+            if(($this->fileExtension !== "jpg") && ($this->fileExtension !== "jpeg") && ($this->fileExtension !== "png") && ($this->fileExtension !== "bmp")) {
+                $this->reasonProblem = 'wrong_extension';
                 return false;
             }
-            if(!empty($this->name)) {
-                if(($this->fileExtension !== "jpg") && ($this->fileExtension !== "jpeg") && ($this->fileExtension !== "png") && ($this->fileExtension !== "bmp")) {
-                    $this->reasonProblem = 'wrong_extension';
-                    return false;
-                }
-            }
+
             if(($this->fileExtension == "jpg") || ($this->fileExtension == "jpeg") || ($this->fileExtension == "png") || ($this->fileExtension == "bmp")) {
                 $input['uri'] = $this->name;
                 $input['meme_id'] = $this->memeId;
@@ -131,6 +127,7 @@ class ImageProcessor
             }
             return false;
         }
+        $this->reasonProblem = 'image_name_not_set';
         return false;
     }
 

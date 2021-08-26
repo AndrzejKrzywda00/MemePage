@@ -41,6 +41,8 @@ class RandomMeme extends React.Component {
         }
     }
 
+
+    // TODO -- rebuild this to look like normal singular meme
     render () {
         const {isLoaded, data} = this.state;
         return (

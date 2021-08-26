@@ -4,11 +4,6 @@
     margin-bottom: 20px;
 }
 
-.list-group-item {
-    margin-top: 10px;
-    border-style: solid;
-}
-
 #all-memes {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -16,6 +11,11 @@
 
 #item:hover {
     background-color: #e3e1e1;
+}
+
+#item {
+    border-top-style: solid;
+    padding-top: 20px;
 }
 
 #content {
