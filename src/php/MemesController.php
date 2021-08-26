@@ -97,12 +97,12 @@ class MemesController
 
         $input = (array) json_decode(file_get_contents("php://input"), TRUE);
         if($input['update_type'] == 'likes') {
-            $this->memesGateway->updateLikes();
+            $this->memesGateway->updateLikes($id);
             $response['status_code_header'] = 'HTTP/1.1 200 OK';
             $response['body'] = null;
         }
         if($input['update_type'] == 'views') {
-            $this->memesGateway->updateViews();
+            $this->memesGateway->updateViews($id);
             $response['status_code_header'] = 'HTTP/1.1 200 OK';
             $response['body'] = null;
         }
@@ -111,7 +111,7 @@ class MemesController
             $response['status_code_header'] = 'HTTP/1.1 200 OK';
             $response['body'] = null;
         }
-        
+
         return $response;
     }
 

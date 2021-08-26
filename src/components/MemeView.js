@@ -11,7 +11,8 @@ class MemeView extends Component {
             imageIsLoaded: false,
             meme_id: localStorage.getItem('meme_id'),
             meme_data: [],
-            image: []
+            image: [],
+            views: 'views'
         }
     }
 
@@ -46,7 +47,18 @@ class MemeView extends Component {
                 }
             );
 
-        await fetch('https://s401454.labagh.pl/memes/')
+        let r = await fetch('https://s401454.labagh.pl/memes/' + this.state.meme_id, {
+            method: "PUT",
+            headers: {
+                "Content-Type" : "application/json",
+                "Accept" : "*/*"
+            },
+            body: JSON.stringify({
+                update_type: this.state.views
+            }),
+        });
+
+        console.log(r);
 
     }
 
