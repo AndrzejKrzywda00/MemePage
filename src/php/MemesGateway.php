@@ -61,15 +61,16 @@ class MemesGateway
         }
     }
 
-    public function updateTitleAndDescription($id, Array $input)
+    public function updateAll($id, $input)
     {
-        $stmt = "UPDATE memes SET title = :title, description = :description WHERE id = :id";
+        $stmt = "UPDATE memes SET title = :title, description = :description, year = :year WHERE id = :id";
         try {
             $stmt = $this->db->prepare($stmt);
             $stmt->execute(array(
                 'id' => $id,
                 'title' => $input['title'],
-                'description' => $input['description']
+                'description' => $input['description'],
+                'year' => $input['year']
             ));
             return $stmt->rowCount();
         } catch (PDOException $e) {

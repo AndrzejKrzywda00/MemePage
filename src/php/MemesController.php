@@ -102,18 +102,21 @@ class MemesController
             $response['status_code_header'] = 'HTTP/1.1 200 OK';
             $response['body'] = null;
         }
+
         if($input['update_type'] == 'remove_like') {
             $this->memesGateway->removeLike($id);
             $response['status_code_header'] = 'HTTP/1.1 200 OK';
             $response['body'] = null;
         }
+
         if($input['update_type'] == 'views') {
             $this->memesGateway->updateViews($id);
             $response['status_code_header'] = 'HTTP/1.1 200 OK';
             $response['body'] = null;
         }
-        if($input['update_type'] == 'general') {
-            $this->memesGateway->updateTitleAndDescription($id, $input);
+
+        if($input["update_type"] == "general") {
+            $this->memesGateway->updateAll($id, $input);
             $response['status_code_header'] = 'HTTP/1.1 200 OK';
             $response['body'] = null;
         }

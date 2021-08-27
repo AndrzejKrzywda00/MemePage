@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Button, Form} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
+import {withRouter} from "react-router-dom";
 import "../form.css";
 
 class Login extends Component {
@@ -51,7 +52,7 @@ class Login extends Component {
             localStorage.setItem('nick',this.state.data[0].nick);
             localStorage.setItem('email',this.state.data[0].email);
         }
-        window.location.reload(true);
+        this.props.history.push("/");
     }
 
     render () {
@@ -78,4 +79,4 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default withRouter(Login);

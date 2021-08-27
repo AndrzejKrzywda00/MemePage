@@ -108,7 +108,7 @@ class AddMeme extends Component {
                         </Form.Group>
                         <Form.Group>
                             <Form.Label id={'formlabel'}>Rok powstania</Form.Label>
-                            <input type={'number'} min={'0'} value={'2015'} step={'1'} required={true} onChange={this.handleYearChange}/>
+                            <input type={'number'} min={'0'} defaultValue={'2015'} step={'1'} required={true} onChange={this.handleYearChange}/>
                         </Form.Group>
                         <Form.Group controlId="formFile">
                             <Form.Label id={'formlabel'}>Dodaj obrazek (jpg,jpeg,bmp,png)</Form.Label><br></br>

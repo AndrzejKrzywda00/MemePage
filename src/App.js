@@ -9,12 +9,12 @@ import Register from "./pages/Register";
 import AddMeme from "./pages/AddMeme";
 import Meme from "./components/Meme";
 import Navbar from './containers/Navbar';
+import MemeEditor from "./components/MemeEditor";
 
 /*
     DO ZROBIENIE JESZCZE
-    + pełna responsywność komentarzy
+    + edycja | usuwanie komentarza
     + modfyikowanie wstawionego mema
-    + dodawanie osobno zdjęcia przez api
     + paginacja
  */
 
@@ -41,6 +41,9 @@ function App() {
                 </Route>
                 <Route path={"/single-meme"}>
                     <Meme/>
+                </Route>
+                <Route path={"/meme-edit"}>
+                    <MemeEditor/>
                 </Route>
                 <Route path={"/"}>
                     <Main/>

@@ -45,7 +45,7 @@ class Panel extends Component {
     }
 
     showEditMeme() {
-
+        this.props.history.push("/meme-edit");
     }
 
     async handleRemoveMeme() {
