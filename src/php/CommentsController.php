@@ -7,11 +7,13 @@ class CommentsController
     private $requestMethod;
     private $commentsGateway;
     private $problemReason;
+    private $commentId;
     private $memeId;
 
-    public function __construct($db, $requestMethod, $memeId)
+    public function __construct($db, $requestMethod, $memeId, $commentId)
     {
         $this->requestMethod = $requestMethod;
+        $this->commentId = $commentId;
         $this->memeId = $memeId;
         $this->commentsGateway = new CommentsGateway($db);
     }
@@ -29,7 +31,12 @@ class CommentsController
                 $response = $this->updateCommentFromRequest();
                 break;
             case 'DELETE':
-                $response = $this->deleteComment();
+                if($this->commentId != null ) {
+                    $response = $this->deleteComment();
+                }
+                else {
+                    $response = $this->deleteComments();
+                }
                 break;
             case 'OPTIONS':
                 $response['status_code_header'] = 'HTTP/1.1 200 OK';
@@ -65,9 +72,17 @@ class CommentsController
         return $response;
     }
 
-    private function deleteComment(): array
+    private function deleteComments(): array
     {
         $this->commentsGateway->deleteByMemeId($this->memeId);
+        $response['status_code_header'] = 'HTTP/1.1 200 OK';
+        $response['body'] = null;
+        return $response;
+    }
+
+    private function deleteComment() : array
+    {
+        $this->commentsGateway->delete($this->commentId);
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
         $response['body'] = null;
         return $response;

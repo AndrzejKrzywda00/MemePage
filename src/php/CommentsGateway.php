@@ -67,7 +67,7 @@ class CommentsGateway
 
     public function delete($id)
     {
-        $stmt = "DELETE FROM comments WHERE id = :id;";
+        $stmt = "DELETE FROM comments WHERE id = :id";
         try {
             $stmt = $this->db->prepare($stmt);
             $stmt->execute(array('id' => $id));

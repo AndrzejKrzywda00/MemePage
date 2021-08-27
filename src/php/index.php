@@ -56,10 +56,13 @@
             break;
         case 'comments':
             $memeId = null;
-            if(isset($uri[2]) and is_numeric($uri[2])) {
+            $commentId = null;
+            if(isset($uri[2]) && isset($uri[3])) {
                 $memeId = $uri[2];
+                $commentId = $uri[3];
             }
-            $controller = new CommentsController($dbConnection, $requestMethod, $memeId);
+            $memeId = $uri[2];
+            $controller = new CommentsController($dbConnection, $requestMethod, $memeId, $commentId);
             $controller->processRequest();
             break;
         case 'images':

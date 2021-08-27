@@ -9,8 +9,30 @@ class CommentData extends Component {
 
         this.state = {
             userData: [],
-            userLoaded: false
+            userLoaded: false,
+            meme_id: localStorage.getItem('meme_id')
         }
+        this.handleEditComment = this.handleEditComment.bind(this);
+        this.handleRemoveComment = this.handleRemoveComment.bind(this);
+    }
+
+    async handleRemoveComment() {
+        
+        let request = await fetch('https://s401454.labagh.pl/comments/' + this.state.meme_id + '/' + this.props.Id, {
+            method: "DELETE",
+            headers: {
+                "Accept" : "*/*"
+            }
+        });
+
+        if(request.ok) {
+            window.location.reload(true);
+        }
+
+    }
+
+    async handleEditComment() {
+        console.log('edit comment');
     }
 
     async componentDidMount() {
@@ -33,7 +55,17 @@ class CommentData extends Component {
         return (
             userLoaded ?
                 <div>
-                    <Comment userId={this.props.userId} addedAt={this.props.addedAt} authorNick={userData.nick} authorId={this.props.authorId} content={this.props.content} Id={this.props.Id} id={this.props.id}/>
+                    <Comment
+                        userId={this.props.userId}
+                        addedAt={this.props.addedAt}
+                        authorNick={userData.nick}
+                        authorId={this.props.authorId}
+                        content={this.props.content}
+                        Id={this.props.Id}
+                        id={this.props.id}
+                        handleEditComment={this.handleEditComment}
+                        handleRemoveComment={this.handleRemoveComment}
+                    />
                 </div>
                 :
                 <div>

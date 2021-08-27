@@ -18,3 +18,18 @@
     font-family: Calibri, serif;
 }
 
+#subtitle {
+    vertical-align: middle;
+}
+
+#link {
+    margin-right: 8px;
+    margin-left: 5px;
+    font-family: Calibri, serif;
+}
+
+#link:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+

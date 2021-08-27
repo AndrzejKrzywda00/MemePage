@@ -11,7 +11,9 @@ export const Comment = ({
     content,
     addedAt,
     authorNick,
-    Id
+    Id,
+    handleRemoveComment,
+    handleEditComment
 }) => {
 
     const checkCommentStyle = (userId === authorId) ? STYLES[0] : STYLES[1];
@@ -21,9 +23,10 @@ export const Comment = ({
         return (
             <ListGroupItem id={checkCommentStyle} key={Id}>
                 <div id={'subtitle'}>
-                    <h6 id={'author'}>Edytuj | Usuń</h6>
-                    <h6 id={'author'}>O {addedAt} piszesz:</h6>
+                    <a id={'link'} onClick={handleEditComment}>Edytuj</a>
+                    <a id={'link'} onClick={handleRemoveComment}>Usuń</a>
                 </div>
+                <h6 id={'author'}>O {addedAt} piszesz:</h6>
                 <p id={'content'}>{content}</p>
             </ListGroupItem>
         );
