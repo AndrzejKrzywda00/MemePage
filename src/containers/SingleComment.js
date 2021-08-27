@@ -10,6 +10,7 @@ export const Comment = ({
     authorId,
     content,
     addedAt,
+    authorNick,
     Id
 }) => {
 
@@ -21,7 +22,7 @@ export const Comment = ({
             <ListGroupItem id={checkCommentStyle} key={Id}>
                 <div id={'subtitle'}>
                     <h6 id={'author'}>Edytuj | Usuń</h6>
-                    <h6 id={'author'}>{authorId} o {addedAt} pisze:</h6>
+                    <h6 id={'author'}>O {addedAt} piszesz:</h6>
                 </div>
                 <p id={'content'}>{content}</p>
             </ListGroupItem>
@@ -31,7 +32,7 @@ export const Comment = ({
     return (
         <ListGroupItem id={checkCommentStyle} key={Id}>
             <div id={'subtitle'}>
-                <h6 id={'author'}>{authorId} o {addedAt} pisze:</h6>
+                <h6 id={'author'}>{authorNick} o {addedAt} pisze:</h6>
             </div>
             <p id={'content'}>{content}</p>
         </ListGroupItem>

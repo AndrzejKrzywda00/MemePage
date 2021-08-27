@@ -2,6 +2,7 @@ import React from "react";
 import {ListGroup, ListGroupItem} from "react-bootstrap";
 import '../styles/Comments.css';
 import {Comment} from "../containers/SingleComment";
+import CommentData from "../meta/CommentData";
 
 class Comments extends React.Component{
 
@@ -43,7 +44,7 @@ class Comments extends React.Component{
                     <h1 id={'comments-title'}>Komentarze:</h1>
                     <ListGroup>
                         {data.map(item => (
-                            <Comment userId={this.state.user_id} addedAt={item.added_at} authorId={item.author_id} content={item.content} Id={item.id} id={item.id}/>
+                            <CommentData Id={item.id} content={item.content} authorId={item.author_id} addedAt={item.added_at} userId={this.state.user_id} id={item.id}/>
                         ))}
                     </ListGroup>
                     <br/>

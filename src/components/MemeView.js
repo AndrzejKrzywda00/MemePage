@@ -18,7 +18,8 @@ class MemeView extends Component {
             like: [],
             likeIsLoaded: false,
             author_nick: [],
-            meme_owner: []
+            meme_owner: [],
+            users: []
         }
         this.handleLike = this.handleLike.bind(this);
     }
@@ -38,7 +39,6 @@ class MemeView extends Component {
                 this.setState({memeIsLoaded: true});
                 this.setState({meme_data: data[0]});
                 this.setState({meme_owner: data[0].added_by});
-                console.log(this.state.meme_owner);
             });
 
         // fetch image to this meme
@@ -82,7 +82,10 @@ class MemeView extends Component {
                 this.setState({likeIsLoaded: true});
             });
 
+
         if(this.state.memeIsLoaded) {
+
+            // take user data
             let takeUserName = await fetch('https://s401454.labagh.pl/users/' + this.state.meme_owner, {
                 method: "GET",
                 headers: {
@@ -94,8 +97,6 @@ class MemeView extends Component {
                     this.setState({author_nick: data[0].nick});
                 })
         }
-        // take user data
-
     }
 
     async handleLike() {
