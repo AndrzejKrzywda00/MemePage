@@ -16,7 +16,9 @@ class MemeView extends Component {
             image: [],
             views: 'views',
             like: [],
-            likeIsLoaded: false
+            likeIsLoaded: false,
+            author_nick: [],
+            meme_owner: []
         }
         this.handleLike = this.handleLike.bind(this);
     }
@@ -35,7 +37,8 @@ class MemeView extends Component {
             .then(data => {
                 this.setState({memeIsLoaded: true});
                 this.setState({meme_data: data[0]});
-                localStorage.setItem('meme_owner',this.state.meme_data.id);
+                this.setState({meme_owner: data[0].added_by});
+                console.log(this.state.meme_owner);
             });
 
         // fetch image to this meme
@@ -66,6 +69,7 @@ class MemeView extends Component {
             }),
         });
 
+        // check if to show liked or not
         let checkIfLiked = await fetch('https://s401454.labagh.pl/likes/' + this.state.meme_id + '/' + this.state.user_id,{
             method: "GET",
             headers: {
@@ -76,7 +80,21 @@ class MemeView extends Component {
             .then(data => {
                 this.setState({like: data[0]});
                 this.setState({likeIsLoaded: true});
+            });
+
+        if(this.state.memeIsLoaded) {
+            let takeUserName = await fetch('https://s401454.labagh.pl/users/' + this.state.meme_owner, {
+                method: "GET",
+                headers: {
+                    "Accept" : "*/*"
+                }
             })
+                .then(response => response.json())
+                .then(data => {
+                    this.setState({author_nick: data[0].nick});
+                })
+        }
+        // take user data
 
     }
 
@@ -125,7 +143,7 @@ class MemeView extends Component {
     }
 
     render() {
-        const {memeIsLoaded, meme_data, imageIsLoaded, image} = this.state;
+        const {memeIsLoaded, meme_data, imageIsLoaded, image, author_nick} = this.state;
 
         return (
             memeIsLoaded && imageIsLoaded ?
@@ -147,7 +165,7 @@ class MemeView extends Component {
                 </div>
                 <div>
                     <p>Mema dodano {meme_data.added_at}</p>
-                    <p>Autor wątku: {meme_data.added_by}</p>
+                    <p>Autor wątku: {author_nick}</p>
                 </div>
             </div>
                 :
