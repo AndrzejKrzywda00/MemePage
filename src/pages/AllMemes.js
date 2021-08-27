@@ -1,8 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import '../styles/AllMemes.css';
 import {ListGroup, ListGroupItem, Button} from "react-bootstrap";
 import {withRouter} from "react-router-dom";
 import ReactPaginate from 'react-paginate';
+import Posts from "../containers/Posts";
+import Pagination from "../meta/Pagination";
 
 class AllMemes extends React.Component {
 
@@ -10,11 +12,18 @@ class AllMemes extends React.Component {
         super(props);
         this.state = {
             isLoaded: false,
-            data: []
+            data: [],
+            currentPage: 1,
+            postsPerPage: 10
         }
+        this.getCurrentPosts = this.getCurrentPosts.bind(this);
+        this.handleClickMeme = this.handleClickMeme.bind(this);
+        this.getTotalPosts = this.getTotalPosts.bind(this);
+        this.paginate = this.paginate.bind(this);
     }
 
     async componentDidMount() {
+
         await fetch('https://s401454.labagh.pl/memes/',
             {
                 Method: "GET",
@@ -29,9 +38,24 @@ class AllMemes extends React.Component {
             });
     }
 
-    handleClickMeme(memeId) {
+    handleClickMeme =(event)=> {
+        let memeId = event.target.getAttribute("meme_id");
         localStorage.setItem('meme_id',memeId);
         this.props.history.push("/single-meme");
+    }
+
+    getCurrentPosts() {
+        const indexOfLastPost = this.state.currentPage * this.state.postsPerPage;
+        const indexOfFirstPost = indexOfLastPost - this.state.postsPerPage;
+        return this.state.data.slice(indexOfFirstPost,indexOfLastPost);
+    }
+
+    getTotalPosts() {
+        return this.state.data.length;
+    }
+
+    paginate (number) {
+        this.setState({currentPage: number});
     }
 
     render() {
@@ -40,15 +64,17 @@ class AllMemes extends React.Component {
                 isLoaded ?
                     <div id={"all-memes"}>
                         <h1>Wszystkie memy</h1>
-                        <ListGroup>
-                            {data.map(item => (
-                                <ListGroupItem id={"item"} key={item.id}>
-                                    <h4 id={"title"}>{item.title}</h4>
-                                    <p id={"content"}>{item.description}</p>
-                                    <Button id={"see-meme"} size={"sm"} onClick={()=>{this.handleClickMeme(item.id)}}>Zobacz mema</Button>
-                                </ListGroupItem>
-                            ))}
-                        </ListGroup>
+                        <Posts
+                            posts={this.getCurrentPosts()}
+                            handleClickMeme={this.handleClickMeme}
+                            loading={!isLoaded}
+                        />
+
+                        <Pagination
+                            postsPerPage={this.state.postsPerPage}
+                            totalPosts={this.getTotalPosts()}
+                            paginate={this.paginate}
+                        />
                     </div>
                     :
                     <p>Loading ...</p>
