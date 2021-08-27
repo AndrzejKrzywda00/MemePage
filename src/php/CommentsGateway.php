@@ -52,7 +52,7 @@ class CommentsGateway
 
     public function updateContent(Array $input)
     {
-        $stmt = "UPDATE comments SET content = :content WHERE id = :id";
+        $stmt = "UPDATE comments SET content = :content, added_at = NOW() WHERE id = :id";
         try {
             $stmt = $this->db->prepare($stmt);
             $stmt->execute(array(

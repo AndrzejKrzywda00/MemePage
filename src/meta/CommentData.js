@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Comment} from "../containers/SingleComment";
+import {withRouter} from "react-router-dom";
 
 
 class CommentData extends Component {
@@ -17,7 +18,7 @@ class CommentData extends Component {
     }
 
     async handleRemoveComment() {
-        
+
         let request = await fetch('https://s401454.labagh.pl/comments/' + this.state.meme_id + '/' + this.props.Id, {
             method: "DELETE",
             headers: {
@@ -32,7 +33,8 @@ class CommentData extends Component {
     }
 
     async handleEditComment() {
-        console.log('edit comment');
+        localStorage.setItem('comment_id',this.props.Id);
+        this.props.history.push("/comment-edit");
     }
 
     async componentDidMount() {
@@ -77,4 +79,4 @@ class CommentData extends Component {
 
 }
 
-export default CommentData;
+export default withRouter(CommentData);

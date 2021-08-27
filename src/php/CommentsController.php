@@ -22,7 +22,12 @@ class CommentsController
     {
         switch($this->requestMethod) {
             case 'GET':
-                $response = $this->getCommentsFromMeme();
+                if($this->commentId != null) {
+                    $response = $this->getComment($this->commentId);
+                }
+                else {
+                    $response = $this->getCommentsFromMeme();
+                }
                 break;
             case 'POST':
                 $response = $this->createCommentFromRequest();
@@ -49,6 +54,14 @@ class CommentsController
         if($response['body']) {
             echo $response['body'];
         }
+    }
+
+    private function getComment($id): array
+    {
+        $result = $this->commentsGateway->find($id);
+        $response['status_code_header'] = 'HTTP/1.1 200 OK';
+        $response['body'] = json_encode($result);
+        return $response;
     }
 
     private function getCommentsFromMeme(): array
@@ -145,7 +158,7 @@ class CommentsController
             $this->problemReason = 'no_content_provided';
             return false;
         }
-        if(isset($input['content']) && (mb_strlen($input['content']) < 25 || mb_strlen($input['content']) > 500)) {
+        if(isset($input['content']) && (mb_strlen($input['content']) < 25 || mb_strlen($input['content']) > 5000)) {
             $this->problemReason = 'content_wrong_length';
             return false;
         }

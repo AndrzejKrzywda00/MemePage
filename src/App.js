@@ -10,6 +10,7 @@ import AddMeme from "./pages/AddMeme";
 import Meme from "./components/Meme";
 import Navbar from './containers/Navbar';
 import MemeEditor from "./components/MemeEditor";
+import CommentEditor from "./components/CommentEditor";
 
 /*
     DO ZROBIENIE JESZCZE
@@ -44,6 +45,9 @@ function App() {
                 </Route>
                 <Route path={"/meme-edit"}>
                     <MemeEditor/>
+                </Route>
+                <Route path={"/comment-edit"}>
+                    <CommentEditor/>
                 </Route>
                 <Route path={"/"}>
                     <Main/>

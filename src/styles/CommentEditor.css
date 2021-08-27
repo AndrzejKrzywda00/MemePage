@@ -1,0 +1,16 @@
+#add-comment-btn {
+    background: lawngreen;
+    outline-color: black;
+    color: black;
+    margin-left: 5px;
+}
+
+#title-com {
+    font-weight: bold;
+}
+
+#comment-editor {
+    background: radial-gradient(circle,rgb(212, 241, 250),lightblue);
+    border-radius: 18px;
+    padding: 15px;
+}
