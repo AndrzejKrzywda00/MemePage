@@ -1,0 +1,11 @@
+#btn--like:hover {
+    background: #1e3ab3;
+}
+
+#btn--unlike {
+    background: cornflowerblue;
+}
+
+#btn--unlike:hover {
+    background: #4f5b8f;
+}

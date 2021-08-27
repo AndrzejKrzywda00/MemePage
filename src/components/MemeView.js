@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import "../styles/MemeView.css";
 import {Button} from "react-bootstrap";
+import {Like} from '../containers/Like';
 
 class MemeView extends Component {
 
@@ -14,7 +15,8 @@ class MemeView extends Component {
             meme_data: [],
             image: [],
             views: 'views',
-            like: undefined
+            like: [],
+            likeIsLoaded: false
         }
         this.handleLike = this.handleLike.bind(this);
     }
@@ -64,24 +66,33 @@ class MemeView extends Component {
             }),
         });
 
-        let checkIfLiked = await fetch('https://s401454.labagh.pl/likes/' + this.state.meme_id + ':' + this.state.user_id,{
+        let checkIfLiked = await fetch('https://s401454.labagh.pl/likes/' + this.state.meme_id + '/' + this.state.user_id,{
             method: "GET",
             headers: {
-                "Content-Type" : "application/json",
                 "Accept" : "*/*"
             }
         })
             .then(response => response.json())
             .then(data => {
-                this.setState({like: data[0]})
-            });
+                this.setState({like: data[0]});
+                this.setState({likeIsLoaded: true});
+            })
 
     }
 
     async handleLike() {
 
+        let method = null;
+
+        if(this.state.like) {
+            method = "DELETE";
+        }
+        else {
+            method = "POST";
+        }
+
         let likeRequest = await fetch('https://s401454.labagh.pl/likes',{
-            method: "POST",
+            method: method,
             headers: {
                 "Content-Type" : "application/json",
                 "Accept" : "*/*"
@@ -92,9 +103,12 @@ class MemeView extends Component {
             })
         });
 
-        console.log(JSON.stringify({
-            meme_id: this.state.meme_id,
-            user_id: this.state.user_id}));
+        if(likeRequest.ok)
+        {
+            var likeDiv = document.getElementById("like-div");
+            var likeButton = likeDiv.innerHTML;
+            likeDiv.innerHTML = likeButton;
+        }
 
     }
 
@@ -115,7 +129,9 @@ class MemeView extends Component {
                 <div id={'liked-viewed'}>
                     <h5>Obejrzano {meme_data.views} razy</h5>
                     <h5>Pulubiono {meme_data.likes} razy</h5>
-                    <Button id={'like-meme'} onClick={this.handleLike}>Lubię to</Button>
+                    <div id={'like-div'}>
+                        <Like functionClick={this.handleLike} likeData={this.state.like} userId={this.state.user_id}></Like>
+                    </div>
                 </div>
                 <div>
                     <p>Mema dodano {meme_data.added_at}</p>

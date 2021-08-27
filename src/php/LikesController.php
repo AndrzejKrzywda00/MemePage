@@ -23,9 +23,6 @@ class LikesController
             case 'GET':
                 $response = $this->checkIfLiked($this->input);
                 break;
-            case 'OPTIONS':
-                $response['status_code_header'] = 'HTTP/1.1 200 OK';
-                break;
             case 'POST':
                 $response = $this->addLike();
                 break;
@@ -33,6 +30,7 @@ class LikesController
                 $response = $this->unlike();
                 break;
             default:
+                $response['status_code_header'] = 'HTTP/1.1 200 OK';
                 break;
         }
         header($response['status_code_header']);

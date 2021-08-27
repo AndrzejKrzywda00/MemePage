@@ -72,10 +72,9 @@
             break;
         case 'likes':
             $input = null;
-            if(isset($uri[2])) {
-                $data = explode($uri[2],':');
-                $input['meme_id'] = $data[0];
-                $input['user_id'] = $data[1];
+            if(isset($uri[2]) and isset($uri[3])) {
+                $input['meme_id'] = $uri[2];
+                $input['user_id'] = $uri[3];
             }
             $controller = new LikesController($dbConnection, $requestMethod, $input);
             $controller->processRequest();

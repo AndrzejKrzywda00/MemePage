@@ -43,7 +43,7 @@ class Comments extends React.Component{
                     <h1 id={'comments-title'}>Komentarze:</h1>
                     <ListGroup>
                         {data.map(item => (
-                            <Comment userId={this.state.user_id} addedAt={item.added_at} authorId={item.author_id} content={item.content} Id={item.id}/>
+                            <Comment userId={this.state.user_id} addedAt={item.added_at} authorId={item.author_id} content={item.content} Id={item.id} id={item.id}/>
                         ))}
                     </ListGroup>
                     <br/>
