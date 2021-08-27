@@ -96,8 +96,14 @@ class MemesController
         }
 
         $input = (array) json_decode(file_get_contents("php://input"), TRUE);
-        if($input['update_type'] == 'likes') {
-            $this->memesGateway->updateLikes($id);
+
+        if($input['update_type'] == 'add_like') {
+            $this->memesGateway->addLike($id);
+            $response['status_code_header'] = 'HTTP/1.1 200 OK';
+            $response['body'] = null;
+        }
+        if($input['update_type'] == 'remove_like') {
+            $this->memesGateway->removeLike($id);
             $response['status_code_header'] = 'HTTP/1.1 200 OK';
             $response['body'] = null;
         }

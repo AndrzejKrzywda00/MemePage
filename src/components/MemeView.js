@@ -83,12 +83,15 @@ class MemeView extends Component {
     async handleLike() {
 
         let method = null;
+        let update_type = null;
 
         if(this.state.like) {
             method = "DELETE";
+            update_type = "remove_like";
         }
         else {
             method = "POST";
+            update_type = "add_like";
         }
 
         let likeRequest = await fetch('https://s401454.labagh.pl/likes',{
@@ -103,11 +106,20 @@ class MemeView extends Component {
             })
         });
 
-        if(likeRequest.ok)
+        let likeMemeRequest = await fetch('https://s401454.labagh.pl/memes/' + this.state.meme_id, {
+            method: "PUT",
+            headers: {
+                "Content-Type" : "application/json",
+                "Accept" : "*/*"
+            },
+            body: JSON.stringify({
+                update_type: update_type
+            })
+        });
+
+        if(likeRequest.ok && likeMemeRequest.ok)
         {
-            var likeDiv = document.getElementById("like-div");
-            var likeButton = likeDiv.innerHTML;
-            likeDiv.innerHTML = likeButton;
+            window.location.reload(true);
         }
 
     }

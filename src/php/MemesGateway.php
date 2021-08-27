@@ -77,9 +77,21 @@ class MemesGateway
         }
     }
 
-    public function updateLikes($id)
+    public function addLike($id)
     {
         $stmt = "UPDATE memes SET likes = likes+1 WHERE id = :id";
+        try {
+            $stmt = $this->db->prepare($stmt);
+            $stmt->execute(array('id' => $id));
+            return $stmt->rowCount();
+        } catch (PDOException $e) {
+            exit($e->getMessage());
+        }
+    }
+
+    public function removeLike($id)
+    {
+        $stmt = "UPDATE memes SET likes = likes-1 WHERE id = :id";
         try {
             $stmt = $this->db->prepare($stmt);
             $stmt->execute(array('id' => $id));
