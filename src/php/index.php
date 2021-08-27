@@ -71,7 +71,13 @@
             $handler->process();
             break;
         case 'likes':
-            $controller = new LikesController($dbConnection, $requestMethod);
+            $input = null;
+            if(isset($uri[2])) {
+                $data = explode($uri[2],':');
+                $input['meme_id'] = $data[0];
+                $input['user_id'] = $data[1];
+            }
+            $controller = new LikesController($dbConnection, $requestMethod, $input);
             $controller->processRequest();
             break;
     }

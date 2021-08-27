@@ -13,13 +13,15 @@ class MemeView extends Component {
             user_id: localStorage.getItem('id'),
             meme_data: [],
             image: [],
-            views: 'views'
+            views: 'views',
+            like: undefined
         }
         this.handleLike = this.handleLike.bind(this);
     }
 
     async componentDidMount() {
 
+        // fetch meme data
         await fetch('https://s401454.labagh.pl/memes/'+ this.state.meme_id,
             {
                 Method: "GET",
@@ -34,6 +36,7 @@ class MemeView extends Component {
                 localStorage.setItem('meme_owner',this.state.meme_data.id);
             });
 
+        // fetch image to this meme
         await fetch('https://s401454.labagh.pl/images/' + this.state.meme_id,
             {
                 Method: "GET",
@@ -49,7 +52,8 @@ class MemeView extends Component {
                 }
             );
 
-        let r = await fetch('https://s401454.labagh.pl/memes/' + this.state.meme_id, {
+        // fetch to add views
+        await fetch('https://s401454.labagh.pl/memes/' + this.state.meme_id, {
             method: "PUT",
             headers: {
                 "Content-Type" : "application/json",
@@ -60,12 +64,22 @@ class MemeView extends Component {
             }),
         });
 
+        let checkIfLiked = await fetch('https://s401454.labagh.pl/likes/' + this.state.meme_id + ':' + this.state.user_id,{
+            method: "GET",
+            headers: {
+                "Content-Type" : "application/json",
+                "Accept" : "*/*"
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                this.setState({like: data[0]})
+            });
+
     }
 
     async handleLike() {
-        // 1. send request to make a row user - meme in `likes`
-        // 2. change button
-        // 3. change number - automatic
+
         let likeRequest = await fetch('https://s401454.labagh.pl/likes',{
             method: "POST",
             headers: {

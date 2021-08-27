@@ -6,12 +6,14 @@ class LikesController
 {
     private $requestMethod;
     private $problemReason;
+    private $input;
 
     private $likesGateway;
 
-    public function __construct($db, $requestMethod)
+    public function __construct($db, $requestMethod, $input)
     {
         $this->requestMethod = $requestMethod;
+        $this->input = $input;
         $this->likesGateway = new LikesGateway($db);
     }
 
@@ -19,7 +21,7 @@ class LikesController
     {
         switch ($this->requestMethod) {
             case 'GET':
-                $response = $this->checkIfLiked();
+                $response = $this->checkIfLiked($this->input);
                 break;
             case 'OPTIONS':
                 $response['status_code_header'] = 'HTTP/1.1 200 OK';
@@ -39,9 +41,8 @@ class LikesController
         }
     }
 
-    private function checkIfLiked(): array
+    private function checkIfLiked($input): array
     {
-        $input = (array) json_decode(file_get_contents("php://input"), TRUE);
         $result = $this->likesGateway->findLike($input['meme_id'],$input['user_id']);
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
         $response['body'] = json_encode($result);
