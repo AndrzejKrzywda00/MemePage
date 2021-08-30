@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import "../styles/MemeView.css";
-import {Button} from "react-bootstrap";
 import {Like} from '../containers/Like';
 import {withRouter} from "react-router-dom";
 
@@ -72,7 +71,7 @@ class MemeView extends Component {
         });
 
         // check if to show liked or not
-        let checkIfLiked = await fetch('https://s401454.labagh.pl/likes/' + this.state.meme_id + '/' + this.state.user_id,{
+        await fetch('https://s401454.labagh.pl/likes/' + this.state.meme_id + '/' + this.state.user_id,{
             method: "GET",
             headers: {
                 "Accept" : "*/*"
@@ -88,7 +87,7 @@ class MemeView extends Component {
         if(this.state.memeIsLoaded) {
 
             // take user data
-            let takeUserName = await fetch('https://s401454.labagh.pl/users/' + this.state.meme_owner, {
+            await fetch('https://s401454.labagh.pl/users/' + this.state.meme_owner, {
                 method: "GET",
                 headers: {
                     "Accept" : "*/*"
@@ -97,7 +96,7 @@ class MemeView extends Component {
                 .then(response => response.json())
                 .then(data => {
                     this.setState({author_nick: data[0].nick});
-                })
+                });
         }
     }
 

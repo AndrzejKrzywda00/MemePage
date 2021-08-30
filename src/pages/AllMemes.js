@@ -1,8 +1,6 @@
-import React, {useState} from "react";
+import React from "react";
 import '../styles/AllMemes.css';
-import {ListGroup, ListGroupItem, Button} from "react-bootstrap";
 import {withRouter} from "react-router-dom";
-import ReactPaginate from 'react-paginate';
 import Posts from "../containers/Posts";
 import Pagination from "../meta/Pagination";
 
@@ -59,7 +57,7 @@ class AllMemes extends React.Component {
     }
 
     render() {
-        const {isLoaded, data} = this.state;
+        const {isLoaded} = this.state;
         return (
                 isLoaded ?
                     <div id={"all-memes"}>

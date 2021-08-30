@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Redirect, withRouter} from "react-router-dom";
-import {Button, Form, FormControl, FormLabel} from "react-bootstrap";
+import {Button, Form, FormControl} from "react-bootstrap";
 import "../styles/CommentEditor.css";
 
 class CommentEditor extends Component {
@@ -38,7 +38,7 @@ class CommentEditor extends Component {
 
     async componentDidMount() {
 
-        let request = await fetch('https://s401454.labagh.pl/comments/' + this.state.meme_id + '/' + this.state.comment_id, {
+        await fetch('https://s401454.labagh.pl/comments/' + this.state.meme_id + '/' + this.state.comment_id, {
             method: "GET",
             headers: {
                 "Accept" : "*/*"

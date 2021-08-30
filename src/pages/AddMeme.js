@@ -41,7 +41,7 @@ class AddMeme extends Component {
     async handleSubmit() {
         if(this.state.selectedFile && this.state.title && this.state.description && this.state.year)  {
 
-            let request = await fetch('https://s401454.labagh.pl/memes', {
+            let request = await fetch('https://s401454.labagh.pl/memes/', {
                 method: "POST",
                 body: JSON.stringify({
                     title: this.state.title,

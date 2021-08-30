@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import "../styles/MemeEditor.css";
 import {Redirect, withRouter} from "react-router-dom";
-import {Button, Form, FormControl} from "react-bootstrap";
+import {Button, Form} from "react-bootstrap";
 
 class MemeEditor extends Component {
 
@@ -9,11 +9,10 @@ class MemeEditor extends Component {
         super(props);
         this.state = {
             meme_id: localStorage.getItem('meme_id'),
-            year: '',
-            description: '',
-            title: '',
+            year: [],
+            description: [],
+            title: [],
             memeIsLoaded: false,
-            meme_data: [],
             general: 'general'
         }
         this.handleSubmitMeme = this.handleSubmitMeme.bind(this);
@@ -24,7 +23,7 @@ class MemeEditor extends Component {
 
     async componentDidMount() {
 
-        let request = await fetch('https://s401454.labagh.pl/memes/'+ this.state.meme_id,
+        await fetch('https://s401454.labagh.pl/memes/'+ this.state.meme_id,
             {
                 Method: "GET",
                 headers: new Headers({
@@ -34,7 +33,6 @@ class MemeEditor extends Component {
             .then(response => response.json())
             .then(data => {
                 this.setState({memeIsLoaded: true});
-                this.setState({meme_data: data[0]});
                 this.setState({title: data[0].title});
                 this.setState({description: data[0].description});
                 this.setState({year: data[0].year});
@@ -82,7 +80,7 @@ class MemeEditor extends Component {
             return <Redirect to={"/login"}></Redirect>;
         }
 
-        const {memeIsLoaded, meme_data} = this.state;
+        const {memeIsLoaded, year, description, title} = this.state;
 
         return (
             memeIsLoaded ?
@@ -91,15 +89,15 @@ class MemeEditor extends Component {
                 <Form id={'edit-meme'}>
                     <Form.Group>
                         <Form.Label>Tytuł</Form.Label>
-                        <Form.Control name={'text'} id={'title-form'} onChange={this.handleTitleChange} autoComplete={'off'} defaultValue={this.state.meme_data.title}/>
+                        <Form.Control name={'text'} id={'title-form'} onChange={this.handleTitleChange} autoComplete={'off'} defaultValue={title}/>
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Wyjaśnienie</Form.Label>
-                        <Form.Control name={'text'} as={'textarea'} id={'desc-form'} rows={7} required={true} onChange={this.handleDescriptionChange} defaultValue={this.state.meme_data.description}/>
+                        <Form.Control name={'text'} as={'textarea'} id={'desc-form'} rows={7} required={true} onChange={this.handleDescriptionChange} defaultValue={description}/>
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Rok powstania</Form.Label>
-                        <Form.Control type={'number'} defaultValue={this.state.meme_data.year} onChange={this.handleYearChange}/>
+                        <Form.Control type={'number'} defaultValue={year} onChange={this.handleYearChange}/>
                     </Form.Group>
                     <Button onClick={this.handleSubmitMeme} id={'submit-button'}>Aktualizuj</Button>
                 </Form>

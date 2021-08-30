@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Form, FormControl} from "react-bootstrap";
+import {Button, Form} from "react-bootstrap";
 import "../styles/Panel.css";
 import {withRouter} from 'react-router-dom';
 

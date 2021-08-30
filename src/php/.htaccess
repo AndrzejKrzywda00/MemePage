@@ -1,2 +1,5 @@
 RewriteEngine On
-RewriteRule (memes)|(images)|(comments)|(likes)|(users) index.php [NC,L]
+RewriteRule (memes\/)|(images)|(comments)|(likes)|(users) index.php [NC,L,QSA]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule . index.html [NC,L]
