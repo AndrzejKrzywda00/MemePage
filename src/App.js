@@ -12,41 +12,34 @@ import Navbar from './containers/Navbar';
 import MemeEditor from "./components/MemeEditor";
 import CommentEditor from "./components/CommentEditor";
 
-/*
-    DO ZROBIENIE JESZCZE
-    + edycja | usuwanie komentarza
-    + modfyikowanie wstawionego mema
-    + paginacja
- */
-
 function App() {
     return (
     <Layout>
         <Router>
             <Navbar/>
             <Switch>
-                <Route path={"/memes/random"}>
+                <Route path={"/random-meme"}>
                     <RandomMeme/>
                 </Route>
-                <Route path={"/memes/add"}>
+                <Route path={"/add-meme"}>
                     <AddMeme/>
                 </Route>
-                <Route path={"/memes"}>
+                <Route path={"/all-memes"}>
                     <AllMemes/>
                 </Route>
-                <Route path={"/users/login"}>
+                <Route path={"/login"}>
                     <Login/>
                 </Route>
-                <Route path={"/users/register"}>
+                <Route path={"/register"}>
                     <Register/>
                 </Route>
                 <Route path={"/single-meme"}>
                     <Meme/>
                 </Route>
-                <Route path={"/meme-edit"}>
+                <Route path={"/edit-meme"}>
                     <MemeEditor/>
                 </Route>
-                <Route path={"/comment-edit"}>
+                <Route path={"/edit-comment"}>
                     <CommentEditor/>
                 </Route>
                 <Route path={"/"}>

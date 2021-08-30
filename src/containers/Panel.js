@@ -11,7 +11,8 @@ class Panel extends Component {
         this.state = {
             user_id: localStorage.getItem('id'),
             comment: null,
-            meme_id: localStorage.getItem('meme_id')
+            meme_id: localStorage.getItem('meme_id'),
+            meme_owner: localStorage.getItem("meme_owner")
         }
 
         this.showEditMeme = this.showEditMeme.bind(this);
@@ -38,50 +39,65 @@ class Panel extends Component {
         const responseOk = await request.ok;
 
         if(responseOk) {
-            await new Promise( r => setTimeout(r,200));
+            await new Promise(r => setTimeout(r,200));
             window.location.reload(true);
         }
 
     }
 
     showEditMeme() {
-        this.props.history.push("/meme-edit");
+
+        if(this.state.user_id === localStorage.getItem("meme_owner")) {
+            this.props.history.push("/edit-meme");
+        }
+        else {
+            this.props.history.push("/login");
+        }
+
     }
 
     async handleRemoveMeme() {
 
-        let imageRequest = await fetch('https://s401454.labagh.pl/images/' + this.state.meme_id, {
-            method: "DELETE",
-            headers : {
-                "Content-Type": "application/json",
-                "Accept" : "*/*"
+        if(this.state.user_id === localStorage.getItem("meme_owner")) {
+
+            let imageRequest = await fetch('https://s401454.labagh.pl/images/' + this.state.meme_id, {
+                method: "DELETE",
+                headers : {
+                    "Content-Type": "application/json",
+                    "Accept" : "*/*"
+                }
+            });
+
+            const imageResponse = await imageRequest.ok;
+
+            let commentRequest = await fetch('https://s401454.labagh.pl/comments/' + this.state.meme_id, {
+                method: "DELETE",
+                headers : {
+                    "Content-Type": "application/json",
+                    "Accept" : "*/*"
+                }
+            });
+
+            const commentResponse = await commentRequest.ok;
+
+            let memeRequest = await fetch('https://s401454.labagh.pl/memes/' + this.state.meme_id, {
+                method: "DELETE",
+                headers : {
+                    "Content-Type": "application/json",
+                    "Accept" : "*/*"
+                }
+            });
+
+            const memeResponse = await memeRequest.ok;
+
+            if(memeResponse && commentResponse && imageResponse) {
+                this.props.history.push("/all-memes");
             }
-        });
 
-        const imageResponse = await imageRequest.ok;
+        }
 
-        let commentRequest = await fetch('https://s401454.labagh.pl/comments/' + this.state.meme_id, {
-            method: "DELETE",
-            headers : {
-                "Content-Type": "application/json",
-                "Accept" : "*/*"
-            }
-        });
-
-        const commentResponse = await commentRequest.ok;
-
-        let memeRequest = await fetch('https://s401454.labagh.pl/memes/' + this.state.meme_id, {
-            method: "DELETE",
-            headers : {
-                "Content-Type": "application/json",
-                "Accept" : "*/*"
-            }
-        });
-
-        const memeResponse = await memeRequest.ok;
-
-        if(memeResponse && commentResponse && imageResponse) {
-            this.props.history.push("/memes");
+        else {
+            this.props.history.push("/login");
         }
 
     }

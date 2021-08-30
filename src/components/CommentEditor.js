@@ -59,7 +59,7 @@ class CommentEditor extends Component {
     render() {
 
         if(localStorage.getItem("logged") !== "true") {
-            return <Redirect to={"/users/login"}></Redirect>;
+            return <Redirect to={"/login"}></Redirect>;
         }
 
         const {isLoaded, content} = this.state;

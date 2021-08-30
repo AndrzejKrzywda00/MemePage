@@ -1,2 +1,2 @@
 RewriteEngine On
-RewriteRule [\s\S]* index.php [NC,L,QSA]
+RewriteRule (memes)|(images)|(comments)|(likes)|(users) index.php [NC,L,QSA]

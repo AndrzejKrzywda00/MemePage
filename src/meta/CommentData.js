@@ -34,7 +34,7 @@ class CommentData extends Component {
 
     async handleEditComment() {
         localStorage.setItem('comment_id',this.props.Id);
-        this.props.history.push("/comment-edit");
+        this.props.history.push("/edit-comment");
     }
 
     async componentDidMount() {

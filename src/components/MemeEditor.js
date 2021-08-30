@@ -79,7 +79,7 @@ class MemeEditor extends Component {
     render() {
 
         if(localStorage.getItem("logged") !== "true") {
-            return <Redirect to={"/users/login"}></Redirect>;
+            return <Redirect to={"/login"}></Redirect>;
         }
 
         const {memeIsLoaded, meme_data} = this.state;

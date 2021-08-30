@@ -49,7 +49,7 @@ class Register extends React.Component {
         const info = await result.ok;
 
         if(info) {
-            this.props.history.push("/users/login");
+            this.props.history.push("/login");
         }
     }
 

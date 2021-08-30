@@ -39,6 +39,7 @@ class MemeView extends Component {
                 this.setState({memeIsLoaded: true});
                 this.setState({meme_data: data[0]});
                 this.setState({meme_owner: data[0].added_by});
+                localStorage.setItem("meme_owner",this.state.meme_owner);
             });
 
         // fetch image to this meme

@@ -21,10 +21,10 @@ class Navbar extends React.Component {
                     <h1>Strona z memami</h1>
                     <div id={"links"}>
                         <Link to={"/"}>Strona domowa</Link>
-                        <Link to={"/memes/random"}>Losowy mem</Link>
-                        <Link to={"/memes"} id="meme_gallery_link">Wszystkie memy</Link>
-                        <Link to={"/memes/add"}>Dodaj mema</Link>
-                        <Link to={"/users/register"}>Rejestracja</Link>
+                        <Link to={"/random-meme"}>Losowy mem</Link>
+                        <Link to={"/all-memes"} id="meme_gallery_link">Wszystkie memy</Link>
+                        <Link to={"/add-meme"}>Dodaj mema</Link>
+                        <Link to={"/register"}>Rejestracja</Link>
                         <Button id={'logout'} onClick={this.handleLogOut}>Wyloguj</Button>
                     </div>
                 </nav>
@@ -36,11 +36,11 @@ class Navbar extends React.Component {
                 <h1>Strona z memami</h1>
                 <div id={"links"}>
                     <Link to={"/"}>Strona domowa</Link>
-                    <Link to={"/memes/random"}>Losowy mem</Link>
-                    <Link to={"/memes"} id="meme_gallery_link">Wszystkie memy</Link>
-                    <Link to={"/users/register"}>Rejestracja</Link>
-                    <Link to={"/users/login"}>Logowanie</Link>
-                    <Link to={"/memes/add"}>Dodaj mema</Link>
+                    <Link to={"/random-meme"}>Losowy mem</Link>
+                    <Link to={"/all-memes"} id="meme_gallery_link">Wszystkie memy</Link>
+                    <Link to={"/register"}>Rejestracja</Link>
+                    <Link to={"/login"}>Logowanie</Link>
+                    <Link to={"/add-meme"}>Dodaj mema</Link>
                 </div>
             </nav>
         );
