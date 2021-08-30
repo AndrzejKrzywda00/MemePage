@@ -50,7 +50,9 @@ class Comments extends React.Component{
                                 authorId={item.author_id}
                                 addedAt={item.added_at}
                                 userId={this.state.user_id}
-                                id={item.id}/>
+                                id={item.id}
+                                key={item.id}
+                            />
                         ))}
                     </ListGroup>
                     <br/>

@@ -1,4 +1,4 @@
-import Logo from '../img/meme_page_logo.png';
+import Logo from '../img/meme_page_logo_v2.png';
 import {Link} from "react-router-dom";
 import React from 'react';
 import {Button} from "react-bootstrap";

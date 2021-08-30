@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import "../styles/MemeView.css";
 import {Button} from "react-bootstrap";
 import {Like} from '../containers/Like';
+import {withRouter} from "react-router-dom";
 
 class MemeView extends Component {
 
@@ -139,7 +140,7 @@ class MemeView extends Component {
 
         if(likeRequest.ok && likeMemeRequest.ok)
         {
-            window.location.reload(true);
+            window.location.reload();
         }
 
     }
@@ -177,4 +178,4 @@ class MemeView extends Component {
 
 }
 
-export default MemeView;
+export default withRouter(MemeView);
