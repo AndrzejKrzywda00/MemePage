@@ -52,7 +52,7 @@ class Login extends Component {
             localStorage.setItem('nick',this.state.data[0].nick);
             localStorage.setItem('email',this.state.data[0].email);
         }
-        this.props.history.push("/");
+        window.location.reload(true);
     }
 
     render () {
