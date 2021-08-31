@@ -12,12 +12,14 @@ class AddMeme extends Component {
             title: null,
             description: null,
             year: null,
-            user: localStorage.getItem('id')
+            user: localStorage.getItem('id'),
+            memes: []
         }
         this.handleYearChange = this.handleYearChange.bind(this);
         this.handleDescChange = this.handleDescChange.bind(this);
         this.handleTitleChange = this.handleTitleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleImageSubmit = this.handleImageSubmit.bind(this);
     }
 
     handleImageChange = event => {
@@ -86,10 +88,14 @@ class AddMeme extends Component {
         }
     }
 
+    async handleImageSubmit() {
+
+    }
+
     render () {
 
         if(localStorage.getItem("logged") !== "true") {
-            return <Redirect to={"/users/login"}></Redirect>;
+            return <Redirect to={"/login"}></Redirect>;
         }
 
         return (
@@ -114,14 +120,6 @@ class AddMeme extends Component {
                             <Form.Control type={"file"} onChange={this.handleImageChange}/>
                         </Form.Group>
                         <Button onClick={this.handleSubmit} id={'add-meme-btn'}>Dodaj mema</Button>
-                    </Form>
-                </div>
-                <div id={'add-image'}>
-                    <h2>Dodaj zdjęcie osobno</h2>
-                    <Form>
-                        <p>Tutaj lista wszystkich memów</p>
-                        <p>tutaj miejsce na upload</p>
-                        <Button id={'add-meme-btn'}>Dodaj zdjęcie</Button>
                     </Form>
                 </div>
             </div>
