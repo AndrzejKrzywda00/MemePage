@@ -11,7 +11,8 @@ class RandomMemeView extends Component {
             imageIsLoaded: false,
             meme_id: null,
             meme_data: [],
-            image: []
+            image: [],
+            author_nick: []
         }
     }
 
@@ -47,10 +48,25 @@ class RandomMemeView extends Component {
                 }
             );
 
+        if(this.state.memeIsLoaded) {
+
+            await fetch('https://s401454.labagh.pl/users/' + this.state.meme_data.added_by, {
+                Method: "GET",
+                headers: {
+                    "Accept": "*/*"
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                        this.setState({author_nick: data[0].nick});
+                    });
+
+        }
+
     }
 
     render() {
-        const {memeIsLoaded, meme_data, imageIsLoaded, image} = this.state;
+        const {memeIsLoaded, meme_data, imageIsLoaded, image, author_nick} = this.state;
 
         return (
             memeIsLoaded && imageIsLoaded ?
@@ -70,7 +86,7 @@ class RandomMemeView extends Component {
                     </div>
                     <div>
                         <p>Mema dodano {meme_data.added_at}</p>
-                        <p>Autor wątku: {meme_data.added_by}</p>
+                        <p>Autor wątku: {author_nick}</p>
 
                     </div>
                 </div>
