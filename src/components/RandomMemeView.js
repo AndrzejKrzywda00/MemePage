@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Button} from "react-bootstrap";
+import {Like} from "../containers/Like";
 
 class RandomMemeView extends Component {
 
@@ -10,10 +11,15 @@ class RandomMemeView extends Component {
             memeIsLoaded: false,
             imageIsLoaded: false,
             meme_id: null,
+            user_id: localStorage.getItem("id"),
             meme_data: [],
             image: [],
-            author_nick: []
+            author_nick: [],
+            likeIsLoaded: false,
+            like: []
         }
+
+        this.handleLike = this.handleLike.bind(this);
     }
 
     async componentDidMount() {
@@ -50,6 +56,18 @@ class RandomMemeView extends Component {
 
         if(this.state.memeIsLoaded) {
 
+            await fetch('https://s401454.labagh.pl/likes/' + this.state.meme_id + '/' + this.state.user_id,{
+                method: "GET",
+                headers: {
+                    "Accept" : "*/*"
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    this.setState({like: data[0]});
+                    this.setState({likeIsLoaded: true});
+                });
+
             await fetch('https://s401454.labagh.pl/users/' + this.state.meme_data.added_by, {
                 Method: "GET",
                 headers: {
@@ -61,6 +79,50 @@ class RandomMemeView extends Component {
                         this.setState({author_nick: data[0].nick});
                     });
 
+        }
+
+    }
+
+    async handleLike() {
+
+        let method = null;
+        let update_type = null;
+
+        if(this.state.like) {
+            method = "DELETE";
+            update_type = "remove_like";
+        }
+        else {
+            method = "POST";
+            update_type = "add_like";
+        }
+
+        let likeRequest = await fetch('https://s401454.labagh.pl/likes',{
+            method: method,
+            headers: {
+                "Content-Type" : "application/json",
+                "Accept" : "*/*"
+            },
+            body: JSON.stringify({
+                meme_id: this.state.meme_id,
+                user_id: this.state.user_id
+            })
+        });
+
+        let likeMemeRequest = await fetch('https://s401454.labagh.pl/memes/' + this.state.meme_id, {
+            method: "PUT",
+            headers: {
+                "Content-Type" : "application/json",
+                "Accept" : "*/*"
+            },
+            body: JSON.stringify({
+                update_type: update_type
+            })
+        });
+
+        if(likeRequest.ok && likeMemeRequest.ok)
+        {
+            window.location.reload();
         }
 
     }
@@ -82,7 +144,9 @@ class RandomMemeView extends Component {
                     <div id={'liked-viewed'}>
                         <h5>Obejrzano {meme_data.views} razy</h5>
                         <h5>Pulubiono {meme_data.likes} razy</h5>
-                        <Button id={'like-meme'}>Lubię to</Button>
+                        <div id={'like-div'}>
+                            <Like functionClick={this.handleLike} likeData={this.state.like} userId={this.state.user_id}></Like>
+                        </div>
                     </div>
                     <div>
                         <p>Mema dodano {meme_data.added_at}</p>
