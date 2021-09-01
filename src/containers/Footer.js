@@ -21,7 +21,7 @@ class Footer extends React.Component {
     render() {
         return (
             <footer id={"footer"}>
-                <p id={"footer-string"}>Strona wykonana przez Andrzeja</p>
+                <p id={"footer-string"}>Strona wykonana przez zespół w składzie: Andrzej Krzywda, Wojtek Mościński, Kamil Łukasik</p>
                 <h2 id={"time-string"}>
                     {this.state.time.toLocaleTimeString()}
                 </h2>
