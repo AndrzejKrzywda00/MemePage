@@ -78,7 +78,7 @@ class Panel extends Component {
                 }
             });
 
-            let deleteLikeRequest = await fetch('https://s401454.labagh.pl/likes/', {
+            await fetch('https://s401454.labagh.pl/likes/', {
                 method: "DELETE",
                 headers: {
                     "Content-Type" : "application/json",
