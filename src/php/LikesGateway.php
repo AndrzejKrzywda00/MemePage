@@ -24,6 +24,18 @@ class LikesGateway
         }
     }
 
+    public function deleteLikeFromMeme($memeId)
+    {
+        $stmt = "DELETE FROM likes WHERE meme_id = :meme_id";
+        try {
+            $stmt = $this->db->prepare($stmt);
+            $stmt->execute(array('meme_id' => $memeId));
+            return $stmt->rowCount(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
     public function findLike($memeId, $userId)
     {
         $stmt = "SELECT * FROM likes WHERE meme_id = :meme_id AND user_id = :user_id";

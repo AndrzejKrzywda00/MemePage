@@ -59,7 +59,13 @@ class LikesController
     private function unlike() : array
     {
         $input = (array) json_decode(file_get_contents("php://input"), TRUE);
-        $result = $this->likesGateway->deleteLike($input['meme_id'],$input['user_id']);
+        if(isset($input['meme_id']) and !isset($input['user_id'])) {
+            $result = $this->likesGateway->deleteLikeFromMeme($input['meme_id']);
+        }
+        else {
+            $result = $this->likesGateway->deleteLike($input['meme_id'],$input['user_id']);
+        }
+
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
         $response['body'] = json_encode($result);
         return $response;

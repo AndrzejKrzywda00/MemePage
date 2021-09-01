@@ -78,6 +78,17 @@ class Panel extends Component {
                 }
             });
 
+            let deleteLikeRequest = await fetch('https://s401454.labagh.pl/likes/', {
+                method: "DELETE",
+                headers: {
+                    "Content-Type" : "application/json",
+                    "Accept" : "*/*"
+                },
+                body: JSON.stringify({
+                    meme_id: this.state.meme_id
+                })
+            });
+
             const commentResponse = await commentRequest.ok;
 
             let memeRequest = await fetch('https://s401454.labagh.pl/memes/' + this.state.meme_id, {
